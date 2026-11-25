@@ -1,0 +1,40 @@
+
+ RUN  v5.1.2 C:/Projects/tutorhub-mern-with-testing/backend
+      Coverage enabled with v8
+
+
+ Test Files  8 passed (8)
+      Tests  64 passed (64)
+   Start at  20:37:00
+   Duration  2.82s (transform 73%, import 15%, worker 9%, tests 3%)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   45.68 |     44.9 |   32.14 |   46.66 |                   
+ controllers       |   38.69 |    39.88 |   23.52 |   39.52 |                   
+  ...Controller.js |      75 |    81.81 |      75 |   76.47 | 7-11              
+  ...Controller.js |   96.15 |    96.15 |      75 |   96.15 | 70                
+  ...Controller.js |   32.83 |    27.27 |   11.11 |      35 | 5-114,145-154     
+  ...Controller.js |       0 |        0 |       0 |       0 | 7-36              
+  ...Controller.js |       0 |        0 |       0 |       0 | 5-20              
+  ...Controller.js |   79.16 |       75 |      50 |   77.27 | 6-14              
+  ...Controller.js |       0 |        0 |       0 |       0 | 5-81              
+  ...Controller.js |       0 |        0 |       0 |       0 | 5-30              
+  ...Controller.js |       0 |        0 |       0 |       0 | 9-69              
+  ...Controller.js |       0 |        0 |       0 |       0 | 9-58              
+ middleware        |   73.68 |    68.75 |   63.63 |   74.54 |                   
+  classAccess.js   |   89.65 |      100 |     100 |   89.28 | 17,43,71          
+  errorHandler.js  |       0 |        0 |       0 |       0 | 2-8               
+  upload.js        |       0 |        0 |       0 |       0 | 5-16              
+ utils             |      90 |    66.66 |      80 |   85.71 |                   
+  generateToken.js |       0 |        0 |       0 |       0 | 4                 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 45.68% ( 164/359 )
+Branches     : 44.9% ( 97/216 )
+Functions    : 32.14% ( 27/84 )
+Lines        : 46.66% ( 147/315 )
+================================================================================

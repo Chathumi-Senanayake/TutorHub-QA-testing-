@@ -1,0 +1,2138 @@
+{
+  "info": {
+    "name": "TutorHub API Tests",
+    "description": "Runnable, self-asserting API suite built from the real routes. Each request has pm.test assertions; tokens/ids are captured automatically. Run: node run-newman.js (API + MongoDB running). The last folder holds requests that document defects and are EXPECTED to fail until fixed.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api"
+    },
+    {
+      "key": "teacherToken",
+      "value": ""
+    },
+    {
+      "key": "studentToken",
+      "value": ""
+    },
+    {
+      "key": "classId",
+      "value": ""
+    },
+    {
+      "key": "enrollmentId",
+      "value": ""
+    },
+    {
+      "key": "quizId",
+      "value": ""
+    },
+    {
+      "key": "sessionId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health check",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.environment.set('runId', Date.now().toString(36));",
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('status ok', () => pm.expect(j.status).to.eql('ok'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register teacher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ms. Silva\",\n  \"email\": \"teacher.{{runId}}@test.lk\",\n  \"password\": \"secret1\",\n  \"role\": \"teacher\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.test('teacher role + token', () => { pm.expect(j.user.role).to.eql('teacher'); pm.expect(j.token).to.be.a('string'); });",
+                  "pm.environment.set('teacherToken', j.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nimal\",\n  \"email\": \"student.{{runId}}@test.lk\",\n  \"password\": \"secret1\",\n  \"role\": \"student\",\n  \"grade\": \"Grade 11\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.test('student role', () => pm.expect(j.user.role).to.eql('student'));",
+                  "pm.environment.set('studentToken', j.token);",
+                  "pm.environment.set('studentId', j.user.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register — missing role (expect 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bad Input\",\n  \"email\": \"bad.{{runId}}@test.lk\",\n  \"password\": \"secret1\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register — duplicate email (expect 409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ms. Silva\",\n  \"email\": \"teacher.{{runId}}@test.lk\",\n  \"password\": \"secret1\",\n  \"role\": \"teacher\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login teacher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"teacher.{{runId}}@test.lk\",\n  \"password\": \"secret1\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('token returned', () => pm.expect(j.token).to.be.a('string'));",
+                  "pm.environment.set('teacherToken', j.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Login — wrong password (expect 401)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"teacher.{{runId}}@test.lk\",\n  \"password\": \"wrongpass\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 401', () => pm.response.to.have.status(401));",
+                  "const j = pm.response.json();",
+                  "pm.test('generic message', () => pm.expect(j.message).to.eql('Invalid email or password'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get my profile (/auth/me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('no password field leaked', () => pm.expect(j.user).to.not.have.property('password'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Classes",
+      "item": [
+        {
+          "name": "Create class (teacher)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Grade 11 - Combined Maths\",\n  \"grade\": \"Grade 11\",\n  \"subjects\": [\n    \"Pure Maths\",\n    \"Applied Maths\"\n  ],\n  \"monthlyFee\": 3500,\n  \"maxStudents\": 2,\n  \"published\": true\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.test('maxStudents saved as 2', () => pm.expect(j.maxStudents).to.eql(2));",
+                  "pm.environment.set('classId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My classes (teacher)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/mine",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "mine"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('contains created class', () => pm.expect(j.some(c => c.id === pm.environment.get('classId'))).to.be.true);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Browse published classes (student)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/published",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "published"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('is a list', () => pm.expect(j).to.be.an('array'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My enrolled classes (student)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/enrolled",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "enrolled"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('is a list', () => pm.expect(j).to.be.an('array'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get one class",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('right class', () => pm.expect(j.id).to.eql(pm.environment.get('classId')));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update class (teacher owner only)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated via Postman test\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('description updated', () => pm.expect(j.description).to.eql('Updated via Postman test'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update class — wrong teacher (expect 403)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"should be forbidden\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 403', () => pm.response.to.have.status(403));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "item": [
+        {
+          "name": "Student requests a seat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enroll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enroll"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.test('pending', () => pm.expect(j.status).to.eql('pending'));",
+                  "pm.environment.set('enrollmentId', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Request again while pending (expect 409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enroll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enroll"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List enrollment requests (teacher owner)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enrollments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enrollments"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('one pending request', () => pm.expect(j.filter(e => e.status === 'pending').length).to.eql(1));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Approve enrollment",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enrollments/{{enrollmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enrollments",
+                "{{enrollmentId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('approved', () => pm.expect(j.status).to.eql('approved'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Approve with invalid status (expect 400)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enrollments/{{enrollmentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enrollments",
+                "{{enrollmentId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"maybe\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register student 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Student Two\",\n  \"email\": \"s2.{{runId}}@test.lk\",\n  \"password\": \"secret1\",\n  \"role\": \"student\",\n  \"grade\": \"Grade 11\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.environment.set('s2Token', j.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Register student 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Student Three\",\n  \"email\": \"s3.{{runId}}@test.lk\",\n  \"password\": \"secret1\",\n  \"role\": \"student\",\n  \"grade\": \"Grade 11\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.environment.set('s3Token', j.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Student 2 requests a seat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{s2Token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enroll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enroll"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.environment.set('enrollmentId2', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Student 3 requests a seat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{s3Token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enroll",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enroll"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.environment.set('enrollmentId3', j.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Approve student 2 (2nd of 2 seats — valid)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enrollments/{{enrollmentId2}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enrollments",
+                "{{enrollmentId2}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "[Defect Issue-1] Approve beyond maxStudents — SHOULD be 409, currently 200",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/enrollments/{{enrollmentId3}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "enrollments",
+                "{{enrollmentId3}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"approved\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// Class has maxStudents=2 and 2 approved students. A 3rd approval must be refused.",
+                  "pm.test('status is 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sessions, Materials, Notices",
+      "item": [
+        {
+          "name": "Create session (teacher)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "sessions"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-12-01\",\n  \"topic\": \"Quadratic equations\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.environment.set('sessionId', j._id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List materials",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/materials",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "materials"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('is a list', () => pm.expect(j).to.be.an('array'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Create notice (teacher)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/notices",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "notices"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"No class this Saturday\",\n  \"body\": \"Rescheduled to Sunday.\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quizzes",
+      "item": [
+        {
+          "name": "Create quiz (teacher)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/quizzes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "quizzes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Algebra Basics\",\n  \"subject\": \"Pure Maths\",\n  \"order\": 1,\n  \"dueDate\": \"2026-12-10\",\n  \"published\": true,\n  \"questions\": [\n    {\n      \"text\": \"2 + 2 = ?\",\n      \"options\": [\n        \"3\",\n        \"4\"\n      ],\n      \"correctIndex\": 1\n    },\n    {\n      \"text\": \"3 x 3 = ?\",\n      \"options\": [\n        \"6\",\n        \"9\"\n      ],\n      \"correctIndex\": 1\n    }\n  ]\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.environment.set('quizId', j._id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List quizzes (student — answers stripped)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/quizzes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "quizzes"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "pm.test('answer key hidden from student', () => pm.expect(pm.response.text()).to.not.include('correctIndex'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get one quiz",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/quizzes/{{quizId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "quizzes",
+                "{{quizId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update quiz (teacher)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/quizzes/{{quizId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "quizzes",
+                "{{quizId}}"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Algebra Basics (updated)\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('title updated', () => pm.expect(j.title).to.eql('Algebra Basics (updated)'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Attempts",
+      "item": [
+        {
+          "name": "Submit quiz attempt (approved student)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attempts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attempts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quizId\": \"{{quizId}}\",\n  \"answers\": [\n    1,\n    1\n  ]\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.test('all-correct answers score 100', () => pm.expect(j.score).to.eql(100));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Submit same quiz again (expect 409)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attempts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attempts"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quizId\": \"{{quizId}}\",\n  \"answers\": [\n    1,\n    1\n  ]\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My subject progress",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attempts/me/progress",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attempts",
+                "me",
+                "progress"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('Pure Maths series present', () => pm.expect(j).to.have.property('Pure Maths'));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quizzes (cleanup)",
+      "item": [
+        {
+          "name": "Delete quiz (teacher)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/quizzes/{{quizId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "quizzes",
+                "{{quizId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "Mark attendance (teacher)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attendance"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"{{sessionId}}\",\n  \"studentId\": \"{{studentId}}\",\n  \"status\": \"present\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('present', () => pm.expect(j.status).to.eql('present'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Mark attendance — invalid status (expect 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attendance"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"{{sessionId}}\",\n  \"studentId\": \"{{studentId}}\",\n  \"status\": \"excused\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My attendance + percentage (student)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attendance/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attendance",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('100% after one present', () => pm.expect(j.summary.pct).to.eql(100));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Session attendance (teacher)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/attendance/session/{{sessionId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "attendance",
+                "session",
+                "{{sessionId}}"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('one record', () => pm.expect(j.length).to.eql(1));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Generate this month's payments (teacher)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/payments/generate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "payments",
+                "generate"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"month\": \"2026-11\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 201', () => pm.response.to.have.status(201));",
+                  "const j = pm.response.json();",
+                  "pm.test('fee records created for approved students', () => pm.expect(j.createdCount).to.be.above(0));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List payments for a month (teacher)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/payments?month=2026-11",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "payments"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('has records', () => pm.expect(j.length).to.be.above(0));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "My payments (student)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/payments/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "payments",
+                "me"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));",
+                  "const j = pm.response.json();",
+                  "pm.test('amount equals class fee', () => pm.expect(j[0].amount).to.eql(3500));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "item": [
+        {
+          "name": "Student stats (student)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{studentToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/stats/student",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "stats",
+                "student"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin/teacher stats (teacher)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/{{classId}}/stats/admin",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "{{classId}}",
+                "stats",
+                "admin"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Defects found by black-box testing (Member 3) — expected to FAIL until fixed",
+      "item": [
+        {
+          "name": "[DEF-BB-04] Negative maxStudents must be rejected (expect 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Negative seats\",\n  \"maxStudents\": -1\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "[DEF-BB-04] Negative monthlyFee must be rejected (expect 400)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Negative fee\",\n  \"monthlyFee\": -500\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "[DEF-BB-03] Malformed class id must give 4xx, not 500",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{teacherToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classes/not-an-id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classes",
+                "not-an-id"
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400 or 404', () => pm.expect(pm.response.code).to.be.oneOf([400, 404]));",
+                  "pm.test('stack trace not leaked', () => pm.expect(pm.response.text()).to.not.include('node_modules'));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "[DEF-BB-02] Short password must give 400 (this request CRASHES the API today — keep last)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Short\",\n  \"email\": \"short.{{runId}}@test.lk\",\n  \"password\": \"pq1\",\n  \"role\": \"student\"\n}"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('status is 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

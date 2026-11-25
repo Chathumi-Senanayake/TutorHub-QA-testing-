@@ -1,0 +1,304 @@
+(node:2192) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+newman
+
+TutorHub API Tests
+
+□ Health
+└ Health check
+  GET http://localhost:5000/api/health [200 OK, 390B, 101ms]
+  √  status is 200
+  √  status ok
+
+□ Auth
+└ Register teacher
+  POST http://localhost:5000/api/auth/register [201 Created, 678B, 384ms]
+  √  status is 201
+  √  teacher role + token
+
+└ Register student
+  POST http://localhost:5000/api/auth/register [201 Created, 680B, 280ms]
+  √  status is 201
+  √  student role
+
+└ Register — missing role (expect 400)
+  POST http://localhost:5000/api/auth/register [400 Bad Request, 407B, 8ms]
+  √  status is 400
+
+└ Register — duplicate email (expect 409)
+  POST http://localhost:5000/api/auth/register [409 Conflict, 402B, 27ms]
+  √  status is 409
+
+└ Login teacher
+  POST http://localhost:5000/api/auth/login [200 OK, 673B, 258ms]
+  √  status is 200
+  √  token returned
+
+└ Login — wrong password (expect 401)
+  POST http://localhost:5000/api/auth/login [401 Unauthorized, 390B, 258ms]
+  √  status is 401
+  √  generic message
+
+└ Get my profile (/auth/me)
+  GET http://localhost:5000/api/auth/me [200 OK, 468B, 19ms]
+  √  status is 200
+  √  no password field leaked
+
+□ Classes
+└ Create class (teacher)
+  POST http://localhost:5000/api/classes [201 Created, 677B, 24ms]
+  √  status is 201
+  √  maxStudents saved as 2
+
+└ My classes (teacher)
+  GET http://localhost:5000/api/classes/mine [200 OK, 709B, 123ms]
+  √  status is 200
+  √  contains created class
+
+└ Browse published classes (student)
+  GET http://localhost:5000/api/classes/published [200 OK, 2.24kB, 58ms]
+  √  status is 200
+  √  is a list
+
+└ My enrolled classes (student)
+  GET http://localhost:5000/api/classes/enrolled [200 OK, 341B, 15ms]
+  √  status is 200
+  √  is a list
+
+└ Get one class
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e [200 OK, 760B, 30ms]
+  √  status is 200
+  √  right class
+
+└ Update class (teacher owner only)
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e [200 OK, 696B, 46ms]
+  √  status is 200
+  √  description updated
+
+└ Update class — wrong teacher (expect 403)
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e [403 Forbidden, 390B, 10ms]
+  √  status is 403
+
+□ Enrollment
+└ Student requests a seat
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enroll [201 Created, 398B, 25ms]
+  √  status is 201
+  √  pending
+
+└ Request again while pending (expect 409)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enroll [409 Conflict, 401B, 19ms]
+  √  status is 409
+
+└ List enrollment requests (teacher owner)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enrollments [200 OK, 569B, 25ms]
+  √  status is 200
+  √  one pending request
+
+└ Approve enrollment
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enrollments/6b06f96fcad71a956efb6964 [200 OK, 719B, 31ms]
+  √  status is 200
+  √  approved
+
+└ Approve with invalid status (expect 400)
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enrollments/6b06f96fcad71a956efb6964 [400 Bad Request, 399B, 14ms]
+  √  status is 400
+
+└ Register student 2
+  POST http://localhost:5000/api/auth/register [201 Created, 681B, 268ms]
+  √  status is 201
+
+└ Register student 3
+  POST http://localhost:5000/api/auth/register [201 Created, 683B, 255ms]
+  √  status is 201
+
+└ Student 2 requests a seat
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enroll [201 Created, 398B, 19ms]
+  √  status is 201
+
+└ Student 3 requests a seat
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enroll [201 Created, 398B, 18ms]
+  √  status is 201
+
+└ Approve student 2 (2nd of 2 seats — valid)
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enrollments/6b06f970cad71a956efb697c [200 OK, 720B, 27ms]
+  √  status is 200
+
+└ [Defect Issue-1] Approve beyond maxStudents — SHOULD be 409, currently 200
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/enrollments/6b06f970cad71a956efb6981 [200 OK, 722B, 21ms]
+  1. status is 409
+
+□ Sessions, Materials, Notices
+└ Create session (teacher)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/sessions [201 Created, 591B, 20ms]
+  √  status is 201
+
+└ List materials
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/materials [200 OK, 341B, 27ms]
+  √  status is 200
+  √  is a list
+
+└ Create notice (teacher)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/notices [201 Created, 611B, 20ms]
+  √  status is 201
+
+□ Quizzes
+└ Create quiz (teacher)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/quizzes [201 Created, 771B, 35ms]
+  √  status is 201
+
+└ List quizzes (student — answers stripped)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/quizzes [200 OK, 752B, 31ms]
+  √  status is 200
+  √  answer key hidden from student
+
+└ Get one quiz
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/quizzes/6b06f970cad71a956efb699d [200 OK, 766B, 22ms]
+  √  status is 200
+
+└ Update quiz (teacher)
+  PATCH http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/quizzes/6b06f970cad71a956efb699d [200 OK, 776B, 23ms]
+  √  status is 200
+  √  title updated
+
+□ Attempts
+└ Submit quiz attempt (approved student)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attempts [201 Created, 654B, 38ms]
+  √  status is 201
+  √  all-correct answers score 100
+
+└ Submit same quiz again (expect 409)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attempts [409 Conflict, 397B, 27ms]
+  √  status is 409
+
+└ My subject progress
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attempts/me/progress [200 OK, 416B, 37ms]
+  √  status is 200
+  √  Pure Maths series present
+
+□ Quizzes (cleanup)
+└ Delete quiz (teacher)
+  DELETE http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/quizzes/6b06f970cad71a956efb699d [200 OK, 367B, 26ms]
+  √  status is 200
+
+□ Attendance
+└ Mark attendance (teacher)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attendance [200 OK, 593B, 26ms]
+  √  status is 200
+  √  present
+
+└ Mark attendance — invalid status (expect 400)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attendance [400 Bad Request, 402B, 13ms]
+  √  status is 400
+
+└ My attendance + percentage (student)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attendance/me [200 OK, 744B, 39ms]
+  √  status is 200
+  √  100% after one present
+
+└ Session attendance (teacher)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/attendance/session/6b06f970cad71a956efb698e [200 OK, 654B, 28ms]
+  √  status is 200
+  √  one record
+
+□ Payments
+└ Generate this month's payments (teacher)
+  POST http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/payments/generate [201 Created, 1.27kB, 46ms]
+  √  status is 201
+  √  fee records created for approved students
+
+└ List payments for a month (teacher)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/payments [200 OK, 1.41kB, 29ms]
+  √  status is 200
+  √  has records
+
+└ My payments (student)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/payments/me [200 OK, 640B, 25ms]
+  √  status is 200
+  √  amount equals class fee
+
+□ Stats
+└ Student stats (student)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/stats/student [200 OK, 478B, 39ms]
+  √  status is 200
+
+└ Admin/teacher stats (teacher)
+  GET http://localhost:5000/api/classes/6b06f96ecad71a956efb694e/stats/admin [200 OK, 501B, 46ms]
+  √  status is 200
+
+□ Defects found by black-box testing (Member 3) — expected to FAIL until fixed
+└ [DEF-BB-04] Negative maxStudents must be rejected (expect 400)
+  POST http://localhost:5000/api/classes [201 Created, 632B, 12ms]
+  2. status is 400
+
+└ [DEF-BB-04] Negative monthlyFee must be rejected (expect 400)
+  POST http://localhost:5000/api/classes [201 Created, 630B, 12ms]
+  3. status is 400
+
+└ [DEF-BB-03] Malformed class id must give 4xx, not 500
+  GET http://localhost:5000/api/classes/not-an-id [500 Internal Server Error, 1.83kB, 16ms]
+  4. status is 400 or 404
+  5. stack trace not leaked
+
+└ [DEF-BB-02] Short password must give 400 (this request CRASHES the API today — keep last)
+  POST http://localhost:5000/api/auth/register [errored]
+     read ECONNRESET
+  7. status is 400
+
+┌─────────────────────────┬───────────────────┬──────────────────┐
+│                         │          executed │           failed │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              iterations │                 1 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│                requests │                50 │                1 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│            test-scripts │                50 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│      prerequest-scripts │                 0 │                0 │
+├─────────────────────────┼───────────────────┼──────────────────┤
+│              assertions │                77 │                6 │
+├─────────────────────────┴───────────────────┴──────────────────┤
+│ total run duration: 7.1s                                       │
+├────────────────────────────────────────────────────────────────┤
+│ total data received: 15.29kB (approx)                          │
+├────────────────────────────────────────────────────────────────┤
+│ average response time: 61ms [min: 8ms, max: 384ms, s.d.: 86ms] │
+└────────────────────────────────────────────────────────────────┘
+
+[31m  # [39m[31m failure        [39m[31m detail                                                                                                                                                                            [39m
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 1.  AssertionError  status is 409                                                                                                                                                                     
+                     expected response to have status code 409 but got 200                                                                                                                             
+                     at assertion:0 in test-script                                                                                                                                                     
+                     inside "Enrollment / [Defect Issue-1] Approve beyond maxStudents — SHOULD be 409, currently 200"                                                                                  
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 2.  AssertionError  status is 400                                                                                                                                                                     
+                     expected response to have status code 400 but got 201                                                                                                                             
+                     at assertion:0 in test-script                                                                                                                                                     
+                     inside "Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-04] Negative maxStudents must be rejected (expect 400)"                            
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 3.  AssertionError  status is 400                                                                                                                                                                     
+                     expected response to have status code 400 but got 201                                                                                                                             
+                     at assertion:0 in test-script                                                                                                                                                     
+                     inside "Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-04] Negative monthlyFee must be rejected (expect 400)"                             
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 4.  AssertionError  status is 400 or 404                                                                                                                                                              
+                     expected 500 to be one of [ 400, 404 ]                                                                                                                                            
+                     at assertion:0 in test-script                                                                                                                                                     
+                     inside "Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-03] Malformed class id must give 4xx, not 500"                                     
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 5.  AssertionError  stack trace not leaked                                                                                                                                                            
+                     expected '{"message":"Cast to ObjectId failed f…' to not include 'node_modules'                                                                                                   
+                     at assertion:1 in test-script                                                                                                                                                     
+                     inside "Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-03] Malformed class id must give 4xx, not 500"                                     
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 6.  Error                                                                                                                                                                                             
+                     read ECONNRESET                                                                                                                                                                   
+                     at request                                                                                                                                                                        
+                     inside ""                                                                                                                                                                         
+[90m    [39m[90m                [39m[90m                                                                                                                                                                                   [39m
+ 7.  AssertionError  status is 400                                                                                                                                                                     
+                     expected PostmanResponse{ …(5) } to have property 'code'                                                                                                                          
+                     at assertion:0 in test-script                                                                                                                                                     
+                     inside "Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-02] Short password must give 400 (this request CRASHES the API today — keep last)" 
+
+50 requests, 77 assertions, 6 failed

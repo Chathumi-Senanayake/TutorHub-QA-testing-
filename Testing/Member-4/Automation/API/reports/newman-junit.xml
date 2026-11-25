@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="TutorHub API Tests" tests="50" time="3.000">
+  <testsuite name="Health / Health check" id="5c01bc5d-ca73-496d-98bd-1641f3f2d443" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.101">
+    <testcase name="status is 200" time="0.101" classname="HealthHealthCheck"/>
+    <testcase name="status ok" time="0.101" classname="HealthHealthCheck"/>
+  </testsuite>
+  <testsuite name="Auth / Register teacher" id="ed11a534-e463-4e84-a7d8-e0aeec9f2b12" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.384">
+    <testcase name="status is 201" time="0.384" classname="AuthRegisterTeacher"/>
+    <testcase name="teacher role + token" time="0.384" classname="AuthRegisterTeacher"/>
+  </testsuite>
+  <testsuite name="Auth / Register student" id="e93a14dc-ac7b-4f23-8e18-ef954744dbb7" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.280">
+    <testcase name="status is 201" time="0.280" classname="AuthRegisterStudent"/>
+    <testcase name="student role" time="0.280" classname="AuthRegisterStudent"/>
+  </testsuite>
+  <testsuite name="Auth / Register — missing role (expect 400)" id="5616d243-0a3b-4ac0-a419-88c38abcbe8b" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.008">
+    <testcase name="status is 400" time="0.008" classname="AuthRegisterMissingRoleExpect400"/>
+  </testsuite>
+  <testsuite name="Auth / Register — duplicate email (expect 409)" id="76dfe95b-784a-42f0-b121-d4355a5e7e20" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.027">
+    <testcase name="status is 409" time="0.027" classname="AuthRegisterDuplicateEmailExpect409"/>
+  </testsuite>
+  <testsuite name="Auth / Login teacher" id="f9730aea-be95-406e-87f9-30478fc019ab" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.258">
+    <testcase name="status is 200" time="0.258" classname="AuthLoginTeacher"/>
+    <testcase name="token returned" time="0.258" classname="AuthLoginTeacher"/>
+  </testsuite>
+  <testsuite name="Auth / Login — wrong password (expect 401)" id="119c4f1f-b082-4ec9-9695-5fe58fa9c267" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.258">
+    <testcase name="status is 401" time="0.258" classname="AuthLoginWrongPasswordExpect401"/>
+    <testcase name="generic message" time="0.258" classname="AuthLoginWrongPasswordExpect401"/>
+  </testsuite>
+  <testsuite name="Auth / Get my profile (/auth/me)" id="1d7acb0e-f4b0-4307-9403-4427229b05c3" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.019">
+    <testcase name="status is 200" time="0.019" classname="AuthGetMyProfileAuthMe"/>
+    <testcase name="no password field leaked" time="0.019" classname="AuthGetMyProfileAuthMe"/>
+  </testsuite>
+  <testsuite name="Classes / Create class (teacher)" id="74f4d928-14e9-44cd-aff0-9296294604e4" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.024">
+    <testcase name="status is 201" time="0.024" classname="ClassesCreateClassTeacher"/>
+    <testcase name="maxStudents saved as 2" time="0.024" classname="ClassesCreateClassTeacher"/>
+  </testsuite>
+  <testsuite name="Classes / My classes (teacher)" id="09ba2561-f962-44b7-a803-cb7ea1ee1e0b" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.123">
+    <testcase name="status is 200" time="0.123" classname="ClassesMyClassesTeacher"/>
+    <testcase name="contains created class" time="0.123" classname="ClassesMyClassesTeacher"/>
+  </testsuite>
+  <testsuite name="Classes / Browse published classes (student)" id="6b88db31-e584-482c-949c-1336d314ffdf" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.058">
+    <testcase name="status is 200" time="0.058" classname="ClassesBrowsePublishedClassesStudent"/>
+    <testcase name="is a list" time="0.058" classname="ClassesBrowsePublishedClassesStudent"/>
+  </testsuite>
+  <testsuite name="Classes / My enrolled classes (student)" id="6388f35c-d54e-47e2-afb6-329f80b16067" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.015">
+    <testcase name="status is 200" time="0.015" classname="ClassesMyEnrolledClassesStudent"/>
+    <testcase name="is a list" time="0.015" classname="ClassesMyEnrolledClassesStudent"/>
+  </testsuite>
+  <testsuite name="Classes / Get one class" id="abaa205c-5202-421c-b48c-c2d200d4801a" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.030">
+    <testcase name="status is 200" time="0.030" classname="ClassesGetOneClass"/>
+    <testcase name="right class" time="0.030" classname="ClassesGetOneClass"/>
+  </testsuite>
+  <testsuite name="Classes / Update class (teacher owner only)" id="9ccb8134-0062-439e-8e93-85ac93525f08" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.046">
+    <testcase name="status is 200" time="0.046" classname="ClassesUpdateClassTeacherOwnerOnly"/>
+    <testcase name="description updated" time="0.046" classname="ClassesUpdateClassTeacherOwnerOnly"/>
+  </testsuite>
+  <testsuite name="Classes / Update class — wrong teacher (expect 403)" id="1237b1a4-ec24-4d77-8f61-1b752d054ce1" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.010">
+    <testcase name="status is 403" time="0.010" classname="ClassesUpdateClassWrongTeacherExpect403"/>
+  </testsuite>
+  <testsuite name="Enrollment / Student requests a seat" id="be5524b4-72cc-4a97-9143-c8654528d1fe" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.025">
+    <testcase name="status is 201" time="0.025" classname="EnrollmentStudentRequestsASeat"/>
+    <testcase name="pending" time="0.025" classname="EnrollmentStudentRequestsASeat"/>
+  </testsuite>
+  <testsuite name="Enrollment / Request again while pending (expect 409)" id="bc8dd022-abdc-4458-ba06-36287abc3fd2" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.019">
+    <testcase name="status is 409" time="0.019" classname="EnrollmentRequestAgainWhilePendingExpect409"/>
+  </testsuite>
+  <testsuite name="Enrollment / List enrollment requests (teacher owner)" id="60dce062-7d82-46d5-96ba-5c519da7b11d" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.025">
+    <testcase name="status is 200" time="0.025" classname="EnrollmentListEnrollmentRequestsTeacherOwner"/>
+    <testcase name="one pending request" time="0.025" classname="EnrollmentListEnrollmentRequestsTeacherOwner"/>
+  </testsuite>
+  <testsuite name="Enrollment / Approve enrollment" id="8139eb09-43c8-4752-9e5b-e86add1e9844" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.031">
+    <testcase name="status is 200" time="0.031" classname="EnrollmentApproveEnrollment"/>
+    <testcase name="approved" time="0.031" classname="EnrollmentApproveEnrollment"/>
+  </testsuite>
+  <testsuite name="Enrollment / Approve with invalid status (expect 400)" id="fecee12f-775b-4979-b78a-e35a6fd23508" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.014">
+    <testcase name="status is 400" time="0.014" classname="EnrollmentApproveWithInvalidStatusExpect400"/>
+  </testsuite>
+  <testsuite name="Enrollment / Register student 2" id="08f33d78-2fe8-4997-8e94-a0a922977c9d" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.268">
+    <testcase name="status is 201" time="0.268" classname="EnrollmentRegisterStudent2"/>
+  </testsuite>
+  <testsuite name="Enrollment / Register student 3" id="90db516b-19f1-4612-9d98-028f8f89216b" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.255">
+    <testcase name="status is 201" time="0.255" classname="EnrollmentRegisterStudent3"/>
+  </testsuite>
+  <testsuite name="Enrollment / Student 2 requests a seat" id="ac6c4fc9-2407-4e69-8d9c-a24e83a9d1db" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.019">
+    <testcase name="status is 201" time="0.019" classname="EnrollmentStudent2RequestsASeat"/>
+  </testsuite>
+  <testsuite name="Enrollment / Student 3 requests a seat" id="90dcc33b-aea8-494d-9c6a-1977c88a735c" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.018">
+    <testcase name="status is 201" time="0.018" classname="EnrollmentStudent3RequestsASeat"/>
+  </testsuite>
+  <testsuite name="Enrollment / Approve student 2 (2nd of 2 seats — valid)" id="33c29217-c890-49bd-adc7-18e8b38c3425" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.027">
+    <testcase name="status is 200" time="0.027" classname="EnrollmentApproveStudent22ndOf2SeatsValid"/>
+  </testsuite>
+  <testsuite name="Enrollment / [Defect Issue-1] Approve beyond maxStudents — SHOULD be 409, currently 200" id="bbb83664-aa8b-4b44-94d8-ec8470d0de3a" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="1" errors="0" time="0.021">
+    <testcase name="status is 409" time="0.021" classname="EnrollmentDefectIssue1ApproveBeyondMaxStudentsShouldBe409Currently200">
+      <failure type="AssertionFailure" message="expected response to have status code 409 but got 200">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2ac6bc-67b7-4476-89f8-473a0e31094e.]]>
+        <![CDATA[Collection name: TutorHub API Tests.]]>
+        <![CDATA[Request name: Enrollment / [Defect Issue-1] Approve beyond maxStudents — SHOULD be 409, currently 200.]]>
+        <![CDATA[Test description: status is 409.]]>
+        <![CDATA[Error message: expected response to have status code 409 but got 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 409 but got 200
+   at Object.eval sandbox-script.js:1:26).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Sessions, Materials, Notices / Create session (teacher)" id="bf493be9-fe5b-46ca-85f3-8f536fad15ae" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.020">
+    <testcase name="status is 201" time="0.020" classname="SessionsMaterialsNoticesCreateSessionTeacher"/>
+  </testsuite>
+  <testsuite name="Sessions, Materials, Notices / List materials" id="bdbbea20-29c1-489a-a228-1ebf9af5162c" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.027">
+    <testcase name="status is 200" time="0.027" classname="SessionsMaterialsNoticesListMaterials"/>
+    <testcase name="is a list" time="0.027" classname="SessionsMaterialsNoticesListMaterials"/>
+  </testsuite>
+  <testsuite name="Sessions, Materials, Notices / Create notice (teacher)" id="829b1ba1-9185-4eb6-8d4e-0f2f82f2b13b" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.020">
+    <testcase name="status is 201" time="0.020" classname="SessionsMaterialsNoticesCreateNoticeTeacher"/>
+  </testsuite>
+  <testsuite name="Quizzes / Create quiz (teacher)" id="92122207-6614-487e-8700-5161fcb23922" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.035">
+    <testcase name="status is 201" time="0.035" classname="QuizzesCreateQuizTeacher"/>
+  </testsuite>
+  <testsuite name="Quizzes / List quizzes (student — answers stripped)" id="5a379f1e-0a71-44fa-99ec-c107d81f94f2" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.031">
+    <testcase name="status is 200" time="0.031" classname="QuizzesListQuizzesStudentAnswersStripped"/>
+    <testcase name="answer key hidden from student" time="0.031" classname="QuizzesListQuizzesStudentAnswersStripped"/>
+  </testsuite>
+  <testsuite name="Quizzes / Get one quiz" id="5247e01a-c5ba-4983-80f6-2d215e9c77cc" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.022">
+    <testcase name="status is 200" time="0.022" classname="QuizzesGetOneQuiz"/>
+  </testsuite>
+  <testsuite name="Quizzes / Update quiz (teacher)" id="fcc0441b-d15e-4a9c-aa18-0961c8c6e3b0" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.023">
+    <testcase name="status is 200" time="0.023" classname="QuizzesUpdateQuizTeacher"/>
+    <testcase name="title updated" time="0.023" classname="QuizzesUpdateQuizTeacher"/>
+  </testsuite>
+  <testsuite name="Attempts / Submit quiz attempt (approved student)" id="45423d6c-c114-4935-8694-53d59d4164da" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.038">
+    <testcase name="status is 201" time="0.038" classname="AttemptsSubmitQuizAttemptApprovedStudent"/>
+    <testcase name="all-correct answers score 100" time="0.038" classname="AttemptsSubmitQuizAttemptApprovedStudent"/>
+  </testsuite>
+  <testsuite name="Attempts / Submit same quiz again (expect 409)" id="e912cde1-f93d-441e-b98c-ca8dd5164cb3" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.027">
+    <testcase name="status is 409" time="0.027" classname="AttemptsSubmitSameQuizAgainExpect409"/>
+  </testsuite>
+  <testsuite name="Attempts / My subject progress" id="40826b56-9fa6-4168-be4b-cdc8a03d2329" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.037">
+    <testcase name="status is 200" time="0.037" classname="AttemptsMySubjectProgress"/>
+    <testcase name="Pure Maths series present" time="0.037" classname="AttemptsMySubjectProgress"/>
+  </testsuite>
+  <testsuite name="Quizzes (cleanup) / Delete quiz (teacher)" id="db4c95a9-f2e2-4904-a705-8b34afa8519c" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.026">
+    <testcase name="status is 200" time="0.026" classname="QuizzesCleanupDeleteQuizTeacher"/>
+  </testsuite>
+  <testsuite name="Attendance / Mark attendance (teacher)" id="3bb2d26d-2de8-424e-a2b2-7fb2286d7c3f" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.026">
+    <testcase name="status is 200" time="0.026" classname="AttendanceMarkAttendanceTeacher"/>
+    <testcase name="present" time="0.026" classname="AttendanceMarkAttendanceTeacher"/>
+  </testsuite>
+  <testsuite name="Attendance / Mark attendance — invalid status (expect 400)" id="f6c2ad67-2bd8-409a-8972-d07239c6321e" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.013">
+    <testcase name="status is 400" time="0.013" classname="AttendanceMarkAttendanceInvalidStatusExpect400"/>
+  </testsuite>
+  <testsuite name="Attendance / My attendance + percentage (student)" id="56e146b9-5457-4842-ad48-c75ed84bcba5" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.039">
+    <testcase name="status is 200" time="0.039" classname="AttendanceMyAttendancePercentageStudent"/>
+    <testcase name="100% after one present" time="0.039" classname="AttendanceMyAttendancePercentageStudent"/>
+  </testsuite>
+  <testsuite name="Attendance / Session attendance (teacher)" id="bf7da66b-61d8-4327-9db6-15ab4f18be7d" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.028">
+    <testcase name="status is 200" time="0.028" classname="AttendanceSessionAttendanceTeacher"/>
+    <testcase name="one record" time="0.028" classname="AttendanceSessionAttendanceTeacher"/>
+  </testsuite>
+  <testsuite name="Payments / Generate this month's payments (teacher)" id="62783439-6b6d-460b-a901-cfbb87d95eb2" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.046">
+    <testcase name="status is 201" time="0.046" classname="PaymentsGenerateThisMonthsPaymentsTeacher"/>
+    <testcase name="fee records created for approved students" time="0.046" classname="PaymentsGenerateThisMonthsPaymentsTeacher"/>
+  </testsuite>
+  <testsuite name="Payments / List payments for a month (teacher)" id="185f8f18-86ef-4134-a342-f58389d72995" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.029">
+    <testcase name="status is 200" time="0.029" classname="PaymentsListPaymentsForAMonthTeacher"/>
+    <testcase name="has records" time="0.029" classname="PaymentsListPaymentsForAMonthTeacher"/>
+  </testsuite>
+  <testsuite name="Payments / My payments (student)" id="92927634-764c-4787-906f-8c9539d82746" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="0" errors="0" time="0.025">
+    <testcase name="status is 200" time="0.025" classname="PaymentsMyPaymentsStudent"/>
+    <testcase name="amount equals class fee" time="0.025" classname="PaymentsMyPaymentsStudent"/>
+  </testsuite>
+  <testsuite name="Stats / Student stats (student)" id="0ed89b1b-b6e4-491b-9fc5-53bdc86054e6" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.039">
+    <testcase name="status is 200" time="0.039" classname="StatsStudentStatsStudent"/>
+  </testsuite>
+  <testsuite name="Stats / Admin/teacher stats (teacher)" id="e53be1f5-6ffb-4b0a-854e-ccd1089fa273" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="0" errors="0" time="0.046">
+    <testcase name="status is 200" time="0.046" classname="StatsAdminTeacherStatsTeacher"/>
+  </testsuite>
+  <testsuite name="Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-04] Negative maxStudents must be rejected (expect 400)" id="cd8a714e-e50b-4ad6-b585-b457ba2fe4ce" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="1" errors="0" time="0.012">
+    <testcase name="status is 400" time="0.012" classname="DefectsFoundByBlackBoxTestingMember3ExpectedToFailUntilFixedDefBb04NegativeMaxStudentsMustBeRejectedExpect400">
+      <failure type="AssertionFailure" message="expected response to have status code 400 but got 201">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2ac6bc-67b7-4476-89f8-473a0e31094e.]]>
+        <![CDATA[Collection name: TutorHub API Tests.]]>
+        <![CDATA[Request name: Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-04] Negative maxStudents must be rejected (expect 400).]]>
+        <![CDATA[Test description: status is 400.]]>
+        <![CDATA[Error message: expected response to have status code 400 but got 201.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 400 but got 201
+   at Object.eval sandbox-script.js:1:47).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-04] Negative monthlyFee must be rejected (expect 400)" id="20734114-c5ae-47ee-821f-0cc1cdaeb55e" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="1" errors="0" time="0.012">
+    <testcase name="status is 400" time="0.012" classname="DefectsFoundByBlackBoxTestingMember3ExpectedToFailUntilFixedDefBb04NegativeMonthlyFeeMustBeRejectedExpect400">
+      <failure type="AssertionFailure" message="expected response to have status code 400 but got 201">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2ac6bc-67b7-4476-89f8-473a0e31094e.]]>
+        <![CDATA[Collection name: TutorHub API Tests.]]>
+        <![CDATA[Request name: Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-04] Negative monthlyFee must be rejected (expect 400).]]>
+        <![CDATA[Test description: status is 400.]]>
+        <![CDATA[Error message: expected response to have status code 400 but got 201.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 400 but got 201
+   at Object.eval sandbox-script.js:1:48).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-03] Malformed class id must give 4xx, not 500" id="cc5b7147-a15f-4b3d-8e3f-49b3287b9948" timestamp="2026-11-25T15:06:20.114Z" tests="2" failures="2" errors="0" time="0.016">
+    <testcase name="status is 400 or 404" time="0.016" classname="DefectsFoundByBlackBoxTestingMember3ExpectedToFailUntilFixedDefBb03MalformedClassIdMustGive4XxNot500">
+      <failure type="AssertionFailure" message="expected 500 to be one of [ 400, 404 ]">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2ac6bc-67b7-4476-89f8-473a0e31094e.]]>
+        <![CDATA[Collection name: TutorHub API Tests.]]>
+        <![CDATA[Request name: Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-03] Malformed class id must give 4xx, not 500.]]>
+        <![CDATA[Test description: status is 400 or 404.]]>
+        <![CDATA[Error message: expected 500 to be one of [ 400, 404 ].]]>
+        <![CDATA[Stacktrace: AssertionError: expected 500 to be one of [ 400, 404 ]
+   at Object.eval sandbox-script.js:1:49).]]>
+      </failure>
+    </testcase>
+    <testcase name="stack trace not leaked" time="0.016" classname="DefectsFoundByBlackBoxTestingMember3ExpectedToFailUntilFixedDefBb03MalformedClassIdMustGive4XxNot500">
+      <failure type="AssertionFailure" message="expected '{&quot;message&quot;:&quot;Cast to ObjectId failed f…' to not include 'node_modules'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2ac6bc-67b7-4476-89f8-473a0e31094e.]]>
+        <![CDATA[Collection name: TutorHub API Tests.]]>
+        <![CDATA[Request name: Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-03] Malformed class id must give 4xx, not 500.]]>
+        <![CDATA[Test description: stack trace not leaked.]]>
+        <![CDATA[Error message: expected '{"message":"Cast to ObjectId failed f…' to not include 'node_modules'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected '{"message":"Cast to ObjectId failed f…' to not include 'node_modules'
+   at Object.eval sandbox-script.js:2:49).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-02] Short password must give 400 (this request CRASHES the API today — keep last)" id="e6583eb5-46ef-4c47-a419-b9512ab7af19" timestamp="2026-11-25T15:06:20.114Z" tests="1" failures="1" errors="1" time="0.000">
+    <system-err><![CDATA[Iteration: 0
+RequestError: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+
+---
+]]></system-err>
+    <testcase name="status is 400" time="0.000" classname="DefectsFoundByBlackBoxTestingMember3ExpectedToFailUntilFixedDefBb02ShortPasswordMustGive400ThisRequestCrashesTheApiTodayKeepLast">
+      <failure type="AssertionFailure" message="expected PostmanResponse{ …(5) } to have property 'code'">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 8d2ac6bc-67b7-4476-89f8-473a0e31094e.]]>
+        <![CDATA[Collection name: TutorHub API Tests.]]>
+        <![CDATA[Request name: Defects found by black-box testing (Member 3) — expected to FAIL until fixed / [DEF-BB-02] Short password must give 400 (this request CRASHES the API today — keep last).]]>
+        <![CDATA[Test description: status is 400.]]>
+        <![CDATA[Error message: expected PostmanResponse{ …(5) } to have property 'code'.]]>
+        <![CDATA[Stacktrace: AssertionError: expected PostmanResponse{ …(5) } to have property 'code'
+   at Object.eval sandbox-script.js:1:50).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+</testsuites>
