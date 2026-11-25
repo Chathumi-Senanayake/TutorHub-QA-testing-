@@ -1,0 +1,43 @@
+# Real backend stdout/stderr captured during the black-box run (node src/server.js, Node v24.15.0)
+# Trigger: POST /api/auth/register {role:'student', password:'pq1'} -> the process EXITS (last lines: 'Node.js v24.15.0')
+# Lines below are verbatim from the log (only terminal colour codes were stripped).
+
+GET /api/health 200 0.069 ms - 49
+GET /api/auth/me 200 2.759 ms - 130
+GET /api/health 200 0.087 ms - 49
+C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\document.js:3397
+    this.$__.validationError = new ValidationError(this);
+                               ^
+
+ValidationError: User validation failed: password: Path `password` (`pq1`, length 3) is shorter than the minimum allowed length (6).
+    at Document.invalidate (C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\document.js:3397:32)
+    at C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\document.js:3158:17
+    at C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\schemaType.js:1443:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+  errors: {
+    password: ValidatorError: Path `password` (`pq1`, length 3) is shorter than the minimum allowed length (6).
+        at validate (C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\schemaType.js:1440:13)
+        at SchemaType.doValidate (C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\schemaType.js:1424:7)
+        at C:\Projects\tutorhub-mern-with-testing\backend\node_modules\mongoose\lib\document.js:3150:18
+        at process.processTicksAndRejections (node:internal/process/task_queues:85:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `password` (`pq1`, length 3) is shorter than the minimum allowed length (6).',
+        type: 'minlength',
+        minlength: 6,
+        path: 'password',
+        fullPath: undefined,
+        value: 'pq1',
+        length: 3
+      },
+      kind: 'minlength',
+      path: 'password',
+      value: 'pq1',
+      reason: undefined,
+      Symbol(mongoose#validatorError): true
+    }
+  },
+  _message: 'User validation failed'
+}
+
+Node.js v24.15.0

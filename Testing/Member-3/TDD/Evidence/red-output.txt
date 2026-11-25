@@ -1,0 +1,25 @@
+
+ RUN  v5.1.2 /tmp/claude-0/-home-claude/4faa004f-1ba2-566d-a85a-09a82d44bb3d/scratchpad/tutorhub-mern/backend
+
+ ❯ tests/unit/attendanceStats.test.js (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/unit/attendanceStats.test.js [ tests/unit/attendanceStats.test.js ]
+Error: Cannot find module '../../src/utils/attendanceStats.js' imported from /tmp/claude-0/-home-claude/4faa004f-1ba2-566d-a85a-09a82d44bb3d/scratchpad/tutorhub-mern/backend/tests/unit/attendanceStats.test.js
+ ❯ tests/unit/attendanceStats.test.js:5:1
+      3| // real "Red" terminal output this produced on its first run.
+      4| import { describe, it, expect } from 'vitest';
+      5| import { calculateAttendancePercentage } from '../../src/utils/attenda…
+       | ^
+      6|
+      7| describe('calculateAttendancePercentage (extracted from attendanceCont…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  18:06:57
+   Duration  169ms (worker 96%, environment 4%)
+

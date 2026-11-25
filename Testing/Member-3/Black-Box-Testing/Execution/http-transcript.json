@@ -1,0 +1,4564 @@
+[
+  {
+    "case": null,
+    "request": {
+      "method": "GET",
+      "url": "/api/health",
+      "auth": "none",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "time": "2026-11-25T14:52:21.825Z"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-02",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA ep02",
+        "email": "ep02.mww8srpp@qa.tutorhub.test",
+        "password": "secret1",
+        "role": "student",
+        "grade": "11"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI1YzExOGU1M2ZkZjI1MzIwNSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.c92Qkh37VCwxCKgj7wTKvwATDBjiS5ytfTGjV3jXX1A",
+        "user": {
+          "id": "6b06f625c118e53fdf253205",
+          "name": "QA ep02",
+          "email": "ep02.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": "11"
+        }
+      }
+    },
+    "ms": 196
+  },
+  {
+    "case": "EP-03",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA ep03",
+        "email": "ep03.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "teacher"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIwOCIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.U1P0ROEhI5dO6itJcy2OG1wymQxf5JEtGaKvzhn2b0k",
+        "user": {
+          "id": "6b06f626c118e53fdf253208",
+          "name": "QA ep03",
+          "email": "ep03.mww8srpp@qa.tutorhub.test",
+          "role": "teacher",
+          "grade": null
+        }
+      }
+    },
+    "ms": 100
+  },
+  {
+    "case": "EP-04",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA ep04",
+        "email": "ep04.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIwYiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.38W7OSvhpKfIcmSHOuttJqfx8TI1Sw39VmRknsuuH3s",
+        "user": {
+          "id": "6b06f626c118e53fdf25320b",
+          "name": "QA ep04",
+          "email": "ep04.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 109
+  },
+  {
+    "case": "EP-04",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA teacher2",
+        "email": "teacher2.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "teacher"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIwZSIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.0xzmG6S6WaaLbYaoKU8UuwX30YGbkC8UojJL0RvtXDg",
+        "user": {
+          "id": "6b06f626c118e53fdf25320e",
+          "name": "QA teacher2",
+          "email": "teacher2.mww8srpp@qa.tutorhub.test",
+          "role": "teacher",
+          "grade": null
+        }
+      }
+    },
+    "ms": 98
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "x",
+        "email": "ep05.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "admin"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "message": "role must be teacher or student"
+      }
+    },
+    "ms": 4
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA Class 1",
+        "grade": "Grade 11",
+        "subjects": [
+          "Pure Maths"
+        ],
+        "published": true
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f626c118e53fdf253211",
+        "name": "QA Class 1",
+        "grade": "Grade 11",
+        "subjects": [
+          "Pure Maths"
+        ],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": 15,
+        "coverImageUrl": null,
+        "published": true,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:22.358Z"
+      }
+    },
+    "ms": 13
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA Draft class",
+        "published": false
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f626c118e53fdf253214",
+        "name": "QA Draft class",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": 15,
+        "coverImageUrl": null,
+        "published": false,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:22.368Z"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sA",
+        "email": "sA.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIxNyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.6Et7szFfWg5jg3Ct5wNy0QDMN1a085tNwa-CoTZX2-E",
+        "user": {
+          "id": "6b06f626c118e53fdf253217",
+          "name": "QA sA",
+          "email": "sa.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 92
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sB",
+        "email": "sB.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIxYSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.oIQMMusq_GbKeALZUIOisyC802PmBMtvpP2cQgjJYTU",
+        "user": {
+          "id": "6b06f626c118e53fdf25321a",
+          "name": "QA sB",
+          "email": "sb.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 93
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sC",
+        "email": "sC.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIxZCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.hQ_z-T3o7VGOClD7lKhEORaga8fZK0d6fMQVwQJq_GY",
+        "user": {
+          "id": "6b06f626c118e53fdf25321d",
+          "name": "QA sC",
+          "email": "sc.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 99
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sD",
+        "email": "sD.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIyMCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9._WEuMG0w1zCUQJu6b8RiE3JL6XSN1rkdtEwjC008W9w",
+        "user": {
+          "id": "6b06f626c118e53fdf253220",
+          "name": "QA sD",
+          "email": "sd.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 95
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sQ",
+        "email": "sQ.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIyMyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.C5kyS6aTpYr1gjTKJhnFPxkDlhyLC47SqFiKt98Fjg0",
+        "user": {
+          "id": "6b06f626c118e53fdf253223",
+          "name": "QA sQ",
+          "email": "sq.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 93
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sP",
+        "email": "sP.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIyNiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQyLCJleHAiOjE3OTYyMjMxNDJ9.8oK3G42cLYRYT9mw0uU-iOTAqhxGMtDSIHIIeFUhTeQ",
+        "user": {
+          "id": "6b06f626c118e53fdf253226",
+          "name": "QA sP",
+          "email": "sp.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 94
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sR",
+        "email": "sR.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIyOSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQzLCJleHAiOjE3OTYyMjMxNDN9.PfgGguLXXTnilnd1qh1DMvLg1yVQZfI3nmI1xn6WyXo",
+        "user": {
+          "id": "6b06f626c118e53fdf253229",
+          "name": "QA sR",
+          "email": "sr.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 98
+  },
+  {
+    "case": "EP-05",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA sX",
+        "email": "sX.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI3YzExOGU1M2ZkZjI1MzIyYyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQzLCJleHAiOjE3OTYyMjMxNDN9.uFeWpF-EyJHC3YxQecBhSQjtsvdCMeAzRmNuy3TDmHk",
+        "user": {
+          "id": "6b06f627c118e53fdf25322c",
+          "name": "QA sX",
+          "email": "sx.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 92
+  },
+  {
+    "case": "DT-E1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253214/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 404,
+      "body": {
+        "message": "This class is not open for enrollment"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "DT-E2",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf253233",
+        "status": "pending"
+      }
+    },
+    "ms": 21
+  },
+  {
+    "case": "DT-E3",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 409,
+      "body": {
+        "message": "Your request is already pending approval"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-13",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf253233",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "maybe"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "message": "status must be approved or rejected"
+      }
+    },
+    "ms": 5
+  },
+  {
+    "case": "DT-E8",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf253233",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "maybe"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "message": "status must be approved or rejected"
+      }
+    },
+    "ms": 5
+  },
+  {
+    "case": "DT-E9",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/000000000000000000000000",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 404,
+      "body": {
+        "message": "Enrollment request not found"
+      }
+    },
+    "ms": 16
+  },
+  {
+    "case": "DT-E9",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf253242",
+        "status": "pending"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "EP-10",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf253242",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf253242",
+        "student": {
+          "_id": "6b06f626c118e53fdf253217",
+          "name": "QA sA",
+          "email": "sa.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:23.213Z",
+        "requestedAt": "2026-11-25T14:52:23.205Z",
+        "createdAt": "2026-11-25T14:52:23.206Z",
+        "updatedAt": "2026-11-25T14:52:23.214Z",
+        "__v": 0
+      }
+    },
+    "ms": 33
+  },
+  {
+    "case": "DT-E4",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 409,
+      "body": {
+        "message": "You are already enrolled in this class"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "DT-E4",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf25324e",
+        "status": "pending"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-11",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf25324e",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "rejected"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf25324e",
+        "student": {
+          "_id": "6b06f626c118e53fdf253229",
+          "name": "QA sR",
+          "email": "sr.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "rejected",
+        "respondedAt": "2026-11-25T14:52:23.268Z",
+        "requestedAt": "2026-11-25T14:52:23.259Z",
+        "createdAt": "2026-11-25T14:52:23.259Z",
+        "updatedAt": "2026-11-25T14:52:23.269Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "DT-E5",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf25324e",
+        "status": "pending"
+      }
+    },
+    "ms": 15
+  },
+  {
+    "case": "DT-E5",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf25324e",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "rejected"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf25324e",
+        "student": {
+          "_id": "6b06f626c118e53fdf253229",
+          "name": "QA sR",
+          "email": "sr.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "rejected",
+        "respondedAt": "2026-11-25T14:52:23.297Z",
+        "requestedAt": "2026-11-25T14:52:23.283Z",
+        "createdAt": "2026-11-25T14:52:23.259Z",
+        "updatedAt": "2026-11-25T14:52:23.298Z",
+        "__v": 0
+      }
+    },
+    "ms": 13
+  },
+  {
+    "case": "DT-E6",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf25325f",
+        "status": "pending"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "DT-E6",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf25325f",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf25325f",
+        "student": {
+          "_id": "6b06f626c118e53fdf25321a",
+          "name": "QA sB",
+          "email": "sb.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:23.322Z",
+        "requestedAt": "2026-11-25T14:52:23.312Z",
+        "createdAt": "2026-11-25T14:52:23.313Z",
+        "updatedAt": "2026-11-25T14:52:23.322Z",
+        "__v": 0
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf253268",
+        "status": "pending"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf253268",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "rejected"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf253268",
+        "student": {
+          "_id": "6b06f627c118e53fdf25322c",
+          "name": "QA sX",
+          "email": "sx.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "rejected",
+        "respondedAt": "2026-11-25T14:52:23.346Z",
+        "requestedAt": "2026-11-25T14:52:23.336Z",
+        "createdAt": "2026-11-25T14:52:23.337Z",
+        "updatedAt": "2026-11-25T14:52:23.346Z",
+        "__v": 0
+      }
+    },
+    "ms": 13
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf253271",
+        "status": "pending"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf253271",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf253271",
+        "student": {
+          "_id": "6b06f626c118e53fdf25321d",
+          "name": "QA sC",
+          "email": "sc.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:23.366Z",
+        "requestedAt": "2026-11-25T14:52:23.358Z",
+        "createdAt": "2026-11-25T14:52:23.358Z",
+        "updatedAt": "2026-11-25T14:52:23.366Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf25327a",
+        "status": "pending"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf25327a",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf25327a",
+        "student": {
+          "_id": "6b06f626c118e53fdf253220",
+          "name": "QA sD",
+          "email": "sd.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:23.383Z",
+        "requestedAt": "2026-11-25T14:52:23.376Z",
+        "createdAt": "2026-11-25T14:52:23.376Z",
+        "updatedAt": "2026-11-25T14:52:23.383Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f627c118e53fdf253283",
+        "status": "pending"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/6b06f627c118e53fdf253283",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf253283",
+        "student": {
+          "_id": "6b06f626c118e53fdf253223",
+          "name": "QA sQ",
+          "email": "sq.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f626c118e53fdf253211",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:23.403Z",
+        "requestedAt": "2026-11-25T14:52:23.394Z",
+        "createdAt": "2026-11-25T14:52:23.394Z",
+        "updatedAt": "2026-11-25T14:52:23.404Z",
+        "__v": 0
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-01",
+        "topic": "Session 1"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-01T00:00:00.000Z",
+        "topic": "Session 1",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf25328c",
+        "createdAt": "2026-11-25T14:52:23.421Z",
+        "updatedAt": "2026-11-25T14:52:23.421Z",
+        "__v": 0
+      }
+    },
+    "ms": 15
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-02",
+        "topic": "Session 2"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-02T00:00:00.000Z",
+        "topic": "Session 2",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf253291",
+        "createdAt": "2026-11-25T14:52:23.432Z",
+        "updatedAt": "2026-11-25T14:52:23.432Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-03",
+        "topic": "Session 3"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-03T00:00:00.000Z",
+        "topic": "Session 3",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf253296",
+        "createdAt": "2026-11-25T14:52:23.444Z",
+        "updatedAt": "2026-11-25T14:52:23.444Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-04",
+        "topic": "Session 4"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-04T00:00:00.000Z",
+        "topic": "Session 4",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf25329b",
+        "createdAt": "2026-11-25T14:52:23.456Z",
+        "updatedAt": "2026-11-25T14:52:23.456Z",
+        "__v": 0
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-05",
+        "topic": "Session 5"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-05T00:00:00.000Z",
+        "topic": "Session 5",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf2532a0",
+        "createdAt": "2026-11-25T14:52:23.465Z",
+        "updatedAt": "2026-11-25T14:52:23.465Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-06",
+        "topic": "Session 6"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-06T00:00:00.000Z",
+        "topic": "Session 6",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf2532a5",
+        "createdAt": "2026-11-25T14:52:23.474Z",
+        "updatedAt": "2026-11-25T14:52:23.474Z",
+        "__v": 0
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-07",
+        "topic": "Session 7"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-07T00:00:00.000Z",
+        "topic": "Session 7",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf2532aa",
+        "createdAt": "2026-11-25T14:52:23.484Z",
+        "updatedAt": "2026-11-25T14:52:23.484Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-08",
+        "topic": "Session 8"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-08T00:00:00.000Z",
+        "topic": "Session 8",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf2532af",
+        "createdAt": "2026-11-25T14:52:23.493Z",
+        "updatedAt": "2026-11-25T14:52:23.493Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-09",
+        "topic": "Session 9"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-09T00:00:00.000Z",
+        "topic": "Session 9",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf2532b4",
+        "createdAt": "2026-11-25T14:52:23.503Z",
+        "updatedAt": "2026-11-25T14:52:23.503Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "DT-E7",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/sessions",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "date": "2026-10-10",
+        "topic": "Session 10"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "date": "2026-10-10T00:00:00.000Z",
+        "topic": "Session 10",
+        "status": "upcoming",
+        "_id": "6b06f627c118e53fdf2532b9",
+        "createdAt": "2026-11-25T14:52:23.512Z",
+        "updatedAt": "2026-11-25T14:52:23.512Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-06",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf25328c",
+        "studentId": "6b06f626c118e53fdf253217",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4475",
+        "session": "6b06f627c118e53fdf25328c",
+        "student": "6b06f626c118e53fdf253217",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.522Z",
+        "markedAt": "2026-11-25T14:52:23.522Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.522Z"
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "EP-07",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf253291",
+        "studentId": "6b06f626c118e53fdf253217",
+        "status": "late"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4476",
+        "student": "6b06f626c118e53fdf253217",
+        "session": "6b06f627c118e53fdf253291",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.536Z",
+        "markedAt": "2026-11-25T14:52:23.536Z",
+        "status": "late",
+        "updatedAt": "2026-11-25T14:52:23.536Z"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-08",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf253296",
+        "studentId": "6b06f626c118e53fdf253217",
+        "status": "absent"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4477",
+        "session": "6b06f627c118e53fdf253296",
+        "student": "6b06f626c118e53fdf253217",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.548Z",
+        "markedAt": "2026-11-25T14:52:23.548Z",
+        "status": "absent",
+        "updatedAt": "2026-11-25T14:52:23.548Z"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-09",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf25329b",
+        "studentId": "6b06f626c118e53fdf253217",
+        "status": "excused"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "message": "status must be present, late or absent"
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance/me",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "records": [
+          {
+            "_id": "6b06f627f5237c6dfd2b4477",
+            "session": {
+              "_id": "6b06f627c118e53fdf253296",
+              "date": "2026-10-03T00:00:00.000Z",
+              "topic": "Session 3"
+            },
+            "student": "6b06f626c118e53fdf253217",
+            "__v": 0,
+            "createdAt": "2026-11-25T14:52:23.548Z",
+            "markedAt": "2026-11-25T14:52:23.548Z",
+            "status": "absent",
+            "updatedAt": "2026-11-25T14:52:23.548Z"
+          },
+          {
+            "_id": "6b06f627f5237c6dfd2b4476",
+            "student": "6b06f626c118e53fdf253217",
+            "session": {
+              "_id": "6b06f627c118e53fdf253291",
+              "date": "2026-10-02T00:00:00.000Z",
+              "topic": "Session 2"
+            },
+            "__v": 0,
+            "createdAt": "2026-11-25T14:52:23.536Z",
+            "markedAt": "2026-11-25T14:52:23.536Z",
+            "status": "late",
+            "updatedAt": "2026-11-25T14:52:23.536Z"
+          },
+          {
+            "_id": "6b06f627f5237c6dfd2b4475",
+            "session": {
+              "_id": "6b06f627c118e53fdf25328c",
+              "date": "2026-10-01T00:00:00.000Z",
+              "topic": "Session 1"
+            },
+            "student": "6b06f626c118e53fdf253217",
+            "__v": 0,
+            "createdAt": "2026-11-25T14:52:23.522Z",
+            "markedAt": "2026-11-25T14:52:23.522Z",
+            "status": "present",
+            "updatedAt": "2026-11-25T14:52:23.522Z"
+          }
+        ],
+        "summary": {
+          "total": 3,
+          "present": 1,
+          "late": 1,
+          "absent": 1,
+          "pct": 67
+        }
+      }
+    },
+    "ms": 32
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf25328c",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4478",
+        "student": "6b06f626c118e53fdf25321a",
+        "session": "6b06f627c118e53fdf25328c",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.603Z",
+        "markedAt": "2026-11-25T14:52:23.603Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.603Z"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf253291",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4479",
+        "session": "6b06f627c118e53fdf253291",
+        "student": "6b06f626c118e53fdf25321a",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.614Z",
+        "markedAt": "2026-11-25T14:52:23.614Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.614Z"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf253296",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b447a",
+        "student": "6b06f626c118e53fdf25321a",
+        "session": "6b06f627c118e53fdf253296",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.624Z",
+        "markedAt": "2026-11-25T14:52:23.624Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.624Z"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf25329b",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b447b",
+        "session": "6b06f627c118e53fdf25329b",
+        "student": "6b06f626c118e53fdf25321a",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.636Z",
+        "markedAt": "2026-11-25T14:52:23.636Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.636Z"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf2532a0",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b447c",
+        "student": "6b06f626c118e53fdf25321a",
+        "session": "6b06f627c118e53fdf2532a0",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.644Z",
+        "markedAt": "2026-11-25T14:52:23.644Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.644Z"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf2532a5",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b447d",
+        "session": "6b06f627c118e53fdf2532a5",
+        "student": "6b06f626c118e53fdf25321a",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.654Z",
+        "markedAt": "2026-11-25T14:52:23.653Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.654Z"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf2532aa",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b447e",
+        "student": "6b06f626c118e53fdf25321a",
+        "session": "6b06f627c118e53fdf2532aa",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.664Z",
+        "markedAt": "2026-11-25T14:52:23.664Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.664Z"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf2532af",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b447f",
+        "session": "6b06f627c118e53fdf2532af",
+        "student": "6b06f626c118e53fdf25321a",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.673Z",
+        "markedAt": "2026-11-25T14:52:23.673Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.673Z"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf2532b4",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "absent"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4480",
+        "student": "6b06f626c118e53fdf25321a",
+        "session": "6b06f627c118e53fdf2532b4",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.682Z",
+        "markedAt": "2026-11-25T14:52:23.682Z",
+        "status": "absent",
+        "updatedAt": "2026-11-25T14:52:23.682Z"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-07b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf2532b9",
+        "studentId": "6b06f626c118e53fdf25321a",
+        "status": "absent"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4481",
+        "session": "6b06f627c118e53fdf2532b9",
+        "student": "6b06f626c118e53fdf25321a",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.691Z",
+        "markedAt": "2026-11-25T14:52:23.691Z",
+        "status": "absent",
+        "updatedAt": "2026-11-25T14:52:23.691Z"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "BVA-09",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance/me",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": "{\"records\":[{\"_id\":\"6b06f627f5237c6dfd2b4481\",\"session\":{\"_id\":\"6b06f627c118e53fdf2532b9\",\"date\":\"2026-10-10T00:00:00.000Z\",\"topic\":\"Session 10\"},\"student\":\"6b06f626c118e53fdf25321a\",\"__v\":0,\"createdAt\":\"2026-11-25T14:52:23.691Z\",\"markedAt\":\"2026-11-25T14:52:23.691Z\",\"status\":\"absent\",\"updatedAt\":\"2026-11-25T14:52:23.691Z\"},{\"_id\":\"6b06f627f5237c6dfd2b4480\",\"student\":\"6b06f626c118e53fdf25321a\",\"session\":{\"_id\":\"6b06f627c118e53fdf2532b4\",\"date\":\"2026-10-09T00:00:00.000Z\",\"topic\":\"Session 9\"},\"__v\":0,\"createdAt\":\"2026-11-25T14:52:23.682Z\",\"markedAt\":\"2026-11-25T14:52:23.682Z\",\"status\":\"absent\",\"updatedAt\":\"2026-11-25T14:52:23.682Z\"},{\"_id\":\"6b06f627f5237c6dfd2b447f\",\"session\":{\"_id\":\"6b06f627c118e53fdf2532af\",\"date\":\"2026-10-08T00:00:00.000Z\",\"topic\":\"Session 8\"},\"student\":\"6b06f626c118e53fdf25321a\",\"__v\":0,\"createdAt\":\"2026-11-25T14:52:23.673Z\",\"markedAt\":\"2026-11-25T14:52:23.673Z\",\"status\":\"present\",\"updatedAt\":\"2026-11-25T14:52:23.673Z\"},{\"_id\":\"6b06f627f5237c6dfd2b447e\",\"student\":\"6b06f626c118e53fdf25321a\",\"session\":{\"_id\":\"6b06f627c118e53fdf2532aa\",\"date\":\"2026-10-07T00:00:00.000Z\",\"topic\":\"Session 7\"},\"__v\":0,\"createdAt\":\"2026-11-25T14:52:23.664Z\",\"markedAt\":\"2026-11-25T14:52:23.664Z\",\"status\":\"present\",\"updatedAt\":\"2026-11-25T14:52:23.664Z\"},{\"_id\":\"6b06f627f5237c6dfd2b447d\",\"session\":{\"_id\":\"6b06f627c118e53fdf2532a5\",\"date\":\"2026-10-06T00:00:00.000Z\",\"topic\":\"Session 6\"},\"student\":\"6b06f626c118e53fdf25321a\",\"__v\":0,\"createdAt\":\"2026-11-25T14:52:23.654Z\",\"markedAt\":\"2026…"
+    },
+    "ms": 17
+  },
+  {
+    "case": "BVA-09",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf25328c",
+        "studentId": "6b06f626c118e53fdf25321d",
+        "status": "present"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4482",
+        "session": "6b06f627c118e53fdf25328c",
+        "student": "6b06f626c118e53fdf25321d",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.720Z",
+        "markedAt": "2026-11-25T14:52:23.720Z",
+        "status": "present",
+        "updatedAt": "2026-11-25T14:52:23.720Z"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "BVA-09",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf253291",
+        "studentId": "6b06f626c118e53fdf25321d",
+        "status": "late"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4483",
+        "student": "6b06f626c118e53fdf25321d",
+        "session": "6b06f627c118e53fdf253291",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.731Z",
+        "markedAt": "2026-11-25T14:52:23.730Z",
+        "status": "late",
+        "updatedAt": "2026-11-25T14:52:23.731Z"
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "BVA-09",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "sessionId": "6b06f627c118e53fdf253296",
+        "studentId": "6b06f626c118e53fdf25321d",
+        "status": "absent"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627f5237c6dfd2b4484",
+        "session": "6b06f627c118e53fdf253296",
+        "student": "6b06f626c118e53fdf25321d",
+        "__v": 0,
+        "createdAt": "2026-11-25T14:52:23.740Z",
+        "markedAt": "2026-11-25T14:52:23.739Z",
+        "status": "absent",
+        "updatedAt": "2026-11-25T14:52:23.740Z"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "BVA-10",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance/me",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "records": [
+          {
+            "_id": "6b06f627f5237c6dfd2b4484",
+            "session": {
+              "_id": "6b06f627c118e53fdf253296",
+              "date": "2026-10-03T00:00:00.000Z",
+              "topic": "Session 3"
+            },
+            "student": "6b06f626c118e53fdf25321d",
+            "__v": 0,
+            "createdAt": "2026-11-25T14:52:23.740Z",
+            "markedAt": "2026-11-25T14:52:23.739Z",
+            "status": "absent",
+            "updatedAt": "2026-11-25T14:52:23.740Z"
+          },
+          {
+            "_id": "6b06f627f5237c6dfd2b4483",
+            "student": "6b06f626c118e53fdf25321d",
+            "session": {
+              "_id": "6b06f627c118e53fdf253291",
+              "date": "2026-10-02T00:00:00.000Z",
+              "topic": "Session 2"
+            },
+            "__v": 0,
+            "createdAt": "2026-11-25T14:52:23.731Z",
+            "markedAt": "2026-11-25T14:52:23.730Z",
+            "status": "late",
+            "updatedAt": "2026-11-25T14:52:23.731Z"
+          },
+          {
+            "_id": "6b06f627f5237c6dfd2b4482",
+            "session": {
+              "_id": "6b06f627c118e53fdf25328c",
+              "date": "2026-10-01T00:00:00.000Z",
+              "topic": "Session 1"
+            },
+            "student": "6b06f626c118e53fdf25321d",
+            "__v": 0,
+            "createdAt": "2026-11-25T14:52:23.720Z",
+            "markedAt": "2026-11-25T14:52:23.720Z",
+            "status": "present",
+            "updatedAt": "2026-11-25T14:52:23.720Z"
+          }
+        ],
+        "summary": {
+          "total": 3,
+          "present": 1,
+          "late": 1,
+          "absent": 1,
+          "pct": 67
+        }
+      }
+    },
+    "ms": 13
+  },
+  {
+    "case": "BVA-11",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attendance/me",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "records": [],
+        "summary": {
+          "total": 0,
+          "present": 0,
+          "late": 0,
+          "absent": 0,
+          "pct": 0
+        }
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "BVA-11",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/payments/generate",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "month": "2026-11"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": "{\"createdCount\":5,\"payments\":[{\"student\":\"6b06f626c118e53fdf253217\",\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"_id\":\"6b06f627c118e53fdf25332e\",\"createdAt\":\"2026-11-25T14:52:23.782Z\",\"updatedAt\":\"2026-11-25T14:52:23.782Z\",\"__v\":0},{\"student\":\"6b06f626c118e53fdf25321a\",\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"_id\":\"6b06f627c118e53fdf253331\",\"createdAt\":\"2026-11-25T14:52:23.784Z\",\"updatedAt\":\"2026-11-25T14:52:23.784Z\",\"__v\":0},{\"student\":\"6b06f626c118e53fdf25321d\",\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"_id\":\"6b06f627c118e53fdf253334\",\"createdAt\":\"2026-11-25T14:52:23.786Z\",\"updatedAt\":\"2026-11-25T14:52:23.786Z\",\"__v\":0},{\"student\":\"6b06f626c118e53fdf253220\",\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"_id\":\"6b06f627c118e53fdf253337\",\"createdAt\":\"2026-11-25T14:52:23.788Z\",\"updatedAt\":\"2026-11-25T14:52:23.788Z\",\"__v\":0},{\"student\":\"6b06f626c118e53fdf253223\",\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"_id\":\"6b06f627c118e53fdf25333a\",\"createdAt\":\"2026-11-25T14:52:23.790Z\",\"updatedAt\":\"2026-11-25T14:52:23.790Z\"…"
+    },
+    "ms": 21
+  },
+  {
+    "case": "BVA-11",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/payments?month=2026-11",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": "[{\"_id\":\"6b06f627c118e53fdf25332e\",\"student\":{\"_id\":\"6b06f626c118e53fdf253217\",\"name\":\"QA sA\",\"email\":\"sa.mww8srpp@qa.tutorhub.test\"},\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"createdAt\":\"2026-11-25T14:52:23.782Z\",\"updatedAt\":\"2026-11-25T14:52:23.782Z\",\"__v\":0},{\"_id\":\"6b06f627c118e53fdf253331\",\"student\":{\"_id\":\"6b06f626c118e53fdf25321a\",\"name\":\"QA sB\",\"email\":\"sb.mww8srpp@qa.tutorhub.test\"},\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"createdAt\":\"2026-11-25T14:52:23.784Z\",\"updatedAt\":\"2026-11-25T14:52:23.784Z\",\"__v\":0},{\"_id\":\"6b06f627c118e53fdf253334\",\"student\":{\"_id\":\"6b06f626c118e53fdf25321d\",\"name\":\"QA sC\",\"email\":\"sc.mww8srpp@qa.tutorhub.test\"},\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"createdAt\":\"2026-11-25T14:52:23.786Z\",\"updatedAt\":\"2026-11-25T14:52:23.786Z\",\"__v\":0},{\"_id\":\"6b06f627c118e53fdf253337\",\"student\":{\"_id\":\"6b06f626c118e53fdf253220\",\"name\":\"QA sD\",\"email\":\"sd.mww8srpp@qa.tutorhub.test\"},\"classGroup\":\"6b06f626c118e53fdf253211\",\"month\":\"2026-11\",\"amount\":3000,\"status\":\"due\",\"dueDate\":\"2026-11-05T00:00:00.000Z\",\"paidAt\":null,\"createdAt\":\"2026-11-25T14:52:23.788Z\",\"updatedAt\":\"2026-11-25T14:52:23.788Z\",\"__v\":0},{\"_id\":\"6b06f627c118e53fdf25333a\",\"student\":{\"_id\":\"6b06f626c118e53…"
+    },
+    "ms": 12
+  },
+  {
+    "case": "EP-14",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/payments/6b06f627c118e53fdf25332e",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "paid"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf25332e",
+        "student": "6b06f626c118e53fdf253217",
+        "classGroup": "6b06f626c118e53fdf253211",
+        "month": "2026-11",
+        "amount": 3000,
+        "status": "paid",
+        "dueDate": "2026-11-05T00:00:00.000Z",
+        "paidAt": "2026-11-25T14:52:23.809Z",
+        "createdAt": "2026-11-25T14:52:23.782Z",
+        "updatedAt": "2026-11-25T14:52:23.809Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-15",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/payments/6b06f627c118e53fdf25332e",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "due"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f627c118e53fdf25332e",
+        "student": "6b06f626c118e53fdf253217",
+        "classGroup": "6b06f626c118e53fdf253211",
+        "month": "2026-11",
+        "amount": 3000,
+        "status": "due",
+        "dueDate": "2026-11-05T00:00:00.000Z",
+        "paidAt": null,
+        "createdAt": "2026-11-25T14:52:23.782Z",
+        "updatedAt": "2026-11-25T14:52:23.819Z",
+        "__v": 0
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "EP-16",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/payments/6b06f627c118e53fdf25332e",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "cancelled"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "message": "status must be paid, due or overdue"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "DT-P1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/payments/generate",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "month": "2026-11"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "createdCount": 0,
+        "payments": []
+      }
+    },
+    "ms": 15
+  },
+  {
+    "case": "DT-P1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/quizzes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "title": "Quiz 4q",
+        "subject": "Pure Maths",
+        "dueDate": "2026-12-31",
+        "questions": [
+          {
+            "text": "Q1",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q2",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q3",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q4",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          }
+        ],
+        "published": true
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "title": "Quiz 4q",
+        "subject": "Pure Maths",
+        "order": 1,
+        "dueDate": "2026-12-31T00:00:00.000Z",
+        "durationMinutes": 20,
+        "questions": [
+          {
+            "text": "Q1",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q2",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q3",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q4",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          }
+        ],
+        "published": true,
+        "_id": "6b06f627c118e53fdf253358",
+        "createdAt": "2026-11-25T14:52:23.858Z",
+        "updatedAt": "2026-11-25T14:52:23.858Z",
+        "__v": 0
+      }
+    },
+    "ms": 14
+  },
+  {
+    "case": "DT-P1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/quizzes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "title": "Draft quiz",
+        "subject": "Pure Maths",
+        "dueDate": "2026-12-31",
+        "questions": [
+          {
+            "text": "Q1",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q2",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          }
+        ],
+        "published": false
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "title": "Draft quiz",
+        "subject": "Pure Maths",
+        "order": 1,
+        "dueDate": "2026-12-31T00:00:00.000Z",
+        "durationMinutes": 20,
+        "questions": [
+          {
+            "text": "Q1",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "text": "Q2",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          }
+        ],
+        "published": false,
+        "_id": "6b06f627c118e53fdf25335d",
+        "createdAt": "2026-11-25T14:52:23.869Z",
+        "updatedAt": "2026-11-25T14:52:23.869Z",
+        "__v": 0
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "DT-P1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/quizzes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "title": "Empty quiz",
+        "subject": "Pure Maths",
+        "dueDate": "2026-12-31",
+        "questions": [],
+        "published": true
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "title": "Empty quiz",
+        "subject": "Pure Maths",
+        "order": 1,
+        "dueDate": "2026-12-31T00:00:00.000Z",
+        "durationMinutes": 20,
+        "questions": [],
+        "published": true,
+        "_id": "6b06f627c118e53fdf253362",
+        "createdAt": "2026-11-25T14:52:23.876Z",
+        "updatedAt": "2026-11-25T14:52:23.876Z",
+        "__v": 0
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "DT-P1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/quizzes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "title": "One question quiz",
+        "subject": "Pure Maths",
+        "dueDate": "2026-12-31",
+        "questions": [
+          {
+            "text": "Q1",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          }
+        ],
+        "published": true
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "classGroup": "6b06f626c118e53fdf253211",
+        "title": "One question quiz",
+        "subject": "Pure Maths",
+        "order": 1,
+        "dueDate": "2026-12-31T00:00:00.000Z",
+        "durationMinutes": 20,
+        "questions": [
+          {
+            "text": "Q1",
+            "options": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "correctIndex": 0
+          }
+        ],
+        "published": true,
+        "_id": "6b06f627c118e53fdf253367",
+        "createdAt": "2026-11-25T14:52:23.883Z",
+        "updatedAt": "2026-11-25T14:52:23.883Z",
+        "__v": 0
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "DT-Q1",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf25335d",
+        "answers": [
+          0,
+          0
+        ]
+      }
+    },
+    "response": {
+      "status": 404,
+      "body": {
+        "message": "Quiz not found or not published"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-Q3",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253358",
+        "answers": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "score": 100,
+        "correct": 4,
+        "total": 4,
+        "attempt": {
+          "quiz": "6b06f627c118e53fdf253358",
+          "student": "6b06f626c118e53fdf253223",
+          "answers": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "score": 100,
+          "_id": "6b06f627c118e53fdf253374",
+          "submittedAt": "2026-11-25T14:52:23.906Z",
+          "createdAt": "2026-11-25T14:52:23.906Z",
+          "updatedAt": "2026-11-25T14:52:23.906Z",
+          "__v": 0
+        }
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "DT-Q2",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253358",
+        "answers": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "response": {
+      "status": 409,
+      "body": {
+        "message": "You have already attempted this quiz"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "DT-Q4",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253358",
+        "answers": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "response": {
+      "status": 403,
+      "body": {
+        "message": "You are not enrolled in this class yet"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "BVA-07",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253362",
+        "answers": []
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "score": 0,
+        "correct": 0,
+        "total": 0,
+        "attempt": {
+          "quiz": "6b06f627c118e53fdf253362",
+          "student": "6b06f626c118e53fdf253220",
+          "answers": [],
+          "score": 0,
+          "_id": "6b06f627c118e53fdf253386",
+          "submittedAt": "2026-11-25T14:52:23.938Z",
+          "createdAt": "2026-11-25T14:52:23.938Z",
+          "updatedAt": "2026-11-25T14:52:23.938Z",
+          "__v": 0
+        }
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "BVA-08a",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253367",
+        "answers": [
+          0
+        ]
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "score": 100,
+        "correct": 1,
+        "total": 1,
+        "attempt": {
+          "quiz": "6b06f627c118e53fdf253367",
+          "student": "6b06f626c118e53fdf253220",
+          "answers": [
+            0
+          ],
+          "score": 100,
+          "_id": "6b06f627c118e53fdf25338e",
+          "submittedAt": "2026-11-25T14:52:23.950Z",
+          "createdAt": "2026-11-25T14:52:23.950Z",
+          "updatedAt": "2026-11-25T14:52:23.950Z",
+          "__v": 0
+        }
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "BVA-08b",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253367",
+        "answers": [
+          3
+        ]
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "score": 0,
+        "correct": 0,
+        "total": 1,
+        "attempt": {
+          "quiz": "6b06f627c118e53fdf253367",
+          "student": "6b06f626c118e53fdf25321d",
+          "answers": [
+            3
+          ],
+          "score": 0,
+          "_id": "6b06f627c118e53fdf253396",
+          "submittedAt": "2026-11-25T14:52:23.963Z",
+          "createdAt": "2026-11-25T14:52:23.964Z",
+          "updatedAt": "2026-11-25T14:52:23.964Z",
+          "__v": 0
+        }
+      }
+    },
+    "ms": 14
+  },
+  {
+    "case": "EP-18",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f626c118e53fdf253211/attempts",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "quizId": "6b06f627c118e53fdf253358",
+        "answers": [
+          0,
+          0
+        ]
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "score": 50,
+        "correct": 2,
+        "total": 4,
+        "attempt": {
+          "quiz": "6b06f627c118e53fdf253358",
+          "student": "6b06f626c118e53fdf25321a",
+          "answers": [
+            0,
+            0
+          ],
+          "score": 50,
+          "_id": "6b06f627c118e53fdf25339e",
+          "submittedAt": "2026-11-25T14:52:23.978Z",
+          "createdAt": "2026-11-25T14:52:23.979Z",
+          "updatedAt": "2026-11-25T14:52:23.979Z",
+          "__v": 0
+        }
+      }
+    },
+    "ms": 13
+  },
+  {
+    "case": "BVA-02",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA bva02",
+        "email": "bva02.mww8srpp@qa.tutorhub.test",
+        "password": "abc123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI3YzExOGU1M2ZkZjI1MzNhMSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.8J3j1CEKrG6OO_q8oL7ONry7rmSYuBOfOJRM7zPDb0w",
+        "user": {
+          "id": "6b06f627c118e53fdf2533a1",
+          "name": "QA bva02",
+          "email": "bva02.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 79
+  },
+  {
+    "case": "BVA-03",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA bva03",
+        "email": "bva03.mww8srpp@qa.tutorhub.test",
+        "password": "abc1234",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNhNCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.K4Jt1vkjtF3Rgu0cFmco7uJe2Pm095XVwx1-9pijnu4",
+        "user": {
+          "id": "6b06f628c118e53fdf2533a4",
+          "name": "QA bva03",
+          "email": "bva03.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 92
+  },
+  {
+    "case": "BVA-12",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA defaults"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533a7",
+        "name": "QA defaults",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": 15,
+        "coverImageUrl": null,
+        "published": false,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:24.161Z"
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "BVA-13",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA one seat",
+        "maxStudents": 1
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533aa",
+        "name": "QA one seat",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": 1,
+        "coverImageUrl": null,
+        "published": false,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:24.168Z"
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "BVA-14",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA negative seats",
+        "maxStudents": -1
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533ad",
+        "name": "QA negative seats",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": -1,
+        "coverImageUrl": null,
+        "published": false,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:24.174Z"
+      }
+    },
+    "ms": 5
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA negative fee",
+        "monthlyFee": -500
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533b0",
+        "name": "QA negative fee",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": -500,
+        "maxStudents": 15,
+        "coverImageUrl": null,
+        "published": false,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:24.181Z"
+      }
+    },
+    "ms": 5
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA two-seat class",
+        "maxStudents": 2,
+        "published": true
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533b3",
+        "name": "QA two-seat class",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": 2,
+        "coverImageUrl": null,
+        "published": true,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:24.187Z"
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat2_0",
+        "email": "seat2_0.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNiNiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.1RD7eQ5oQ7FIvjkfoOG-dPxC0dPDGzCtCikuCzTPTh0",
+        "user": {
+          "id": "6b06f628c118e53fdf2533b6",
+          "name": "QA seat2_0",
+          "email": "seat2_0.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 103
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat2_1",
+        "email": "seat2_1.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNiOSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.Qh_kIk6m2AqG11i8Lw9QCa4nsDg6MNEgVmgf_kuFZTM",
+        "user": {
+          "id": "6b06f628c118e53fdf2533b9",
+          "name": "QA seat2_1",
+          "email": "seat2_1.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 95
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat2_2",
+        "email": "seat2_2.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNiYyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.pxfLjA8EK1MLmkAWjWU7AU9nGDZ8zzG3Rh5ybAcqYMA",
+        "user": {
+          "id": "6b06f628c118e53fdf2533bc",
+          "name": "QA seat2_2",
+          "email": "seat2_2.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 100
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533b3/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533c1",
+        "status": "pending"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533b3/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533c6",
+        "status": "pending"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533b3/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533cb",
+        "status": "pending"
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "BVA-15",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533b3/enrollments/6b06f628c118e53fdf2533c1",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f628c118e53fdf2533c1",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533b6",
+          "name": "QA seat2_0",
+          "email": "seat2_0.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533b3",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:24.515Z",
+        "requestedAt": "2026-11-25T14:52:24.492Z",
+        "createdAt": "2026-11-25T14:52:24.492Z",
+        "updatedAt": "2026-11-25T14:52:24.515Z",
+        "__v": 0
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "EP-17",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533b3/enrollments/6b06f628c118e53fdf2533c6",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f628c118e53fdf2533c6",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533b9",
+          "name": "QA seat2_1",
+          "email": "seat2_1.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533b3",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:24.525Z",
+        "requestedAt": "2026-11-25T14:52:24.500Z",
+        "createdAt": "2026-11-25T14:52:24.501Z",
+        "updatedAt": "2026-11-25T14:52:24.525Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533b3/enrollments/6b06f628c118e53fdf2533cb",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f628c118e53fdf2533cb",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533bc",
+          "name": "QA seat2_2",
+          "email": "seat2_2.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533b3",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:24.538Z",
+        "requestedAt": "2026-11-25T14:52:24.507Z",
+        "createdAt": "2026-11-25T14:52:24.507Z",
+        "updatedAt": "2026-11-25T14:52:24.538Z",
+        "__v": 0
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "QA fifteen-seat class",
+        "published": true
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f628c118e53fdf2533da",
+        "name": "QA fifteen-seat class",
+        "grade": "",
+        "subjects": [],
+        "description": "",
+        "schedule": "Sat-Sun, 2:00-6:00 PM",
+        "monthlyFee": 3000,
+        "maxStudents": 15,
+        "coverImageUrl": null,
+        "published": true,
+        "teacher": "6b06f626c118e53fdf253208",
+        "createdAt": "2026-11-25T14:52:24.548Z"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_0",
+        "email": "seat15_0.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNkZCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9._e-cJaR0eWTU-FSf9gvE4L330M0g9wDcDhc3250Owb4",
+        "user": {
+          "id": "6b06f628c118e53fdf2533dd",
+          "name": "QA seat15_0",
+          "email": "seat15_0.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 99
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_1",
+        "email": "seat15_1.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNlMCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.8ku80bC57Re7HMLSeOgTFrHktabSQOHfQWyDYbgn17g",
+        "user": {
+          "id": "6b06f628c118e53fdf2533e0",
+          "name": "QA seat15_1",
+          "email": "seat15_1.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 83
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_2",
+        "email": "seat15_2.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNlMyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.zsFw8yVAaSOaGRf8fNhbGER7AarpdwXqFUjW5q05v9k",
+        "user": {
+          "id": "6b06f628c118e53fdf2533e3",
+          "name": "QA seat15_2",
+          "email": "seat15_2.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 97
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_3",
+        "email": "seat15_3.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNlNiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ0LCJleHAiOjE3OTYyMjMxNDR9.1gWhzjVmDYSD-26JZuuxueT7AM_HWv6UwAIIK3cs_ZI",
+        "user": {
+          "id": "6b06f628c118e53fdf2533e6",
+          "name": "QA seat15_3",
+          "email": "seat15_3.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 112
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_4",
+        "email": "seat15_4.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI4YzExOGU1M2ZkZjI1MzNlOSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.PaImVeSqIc_K5dkdAMSlKhPV_lLKThX2qLEcgqdmK98",
+        "user": {
+          "id": "6b06f628c118e53fdf2533e9",
+          "name": "QA seat15_4",
+          "email": "seat15_4.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 94
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_5",
+        "email": "seat15_5.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNlYyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.lp2Rb62Rpifso_Ck2uvSXUKxTueVoIfMSihnN2-ATSA",
+        "user": {
+          "id": "6b06f629c118e53fdf2533ec",
+          "name": "QA seat15_5",
+          "email": "seat15_5.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 99
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_6",
+        "email": "seat15_6.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNlZiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.yjwb6ViwETa60mdD8eIpMYtqzXfpJBYdhvp0bi9lKgk",
+        "user": {
+          "id": "6b06f629c118e53fdf2533ef",
+          "name": "QA seat15_6",
+          "email": "seat15_6.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 86
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_7",
+        "email": "seat15_7.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNmMiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.3y7eAXxzjksvkJmgzpEfLmRkUB4deMU7jkZ2Bp0nMQs",
+        "user": {
+          "id": "6b06f629c118e53fdf2533f2",
+          "name": "QA seat15_7",
+          "email": "seat15_7.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 122
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_8",
+        "email": "seat15_8.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNmNSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.13Jhp5Yq61m2tcdKKNqANsEF6uDGw6wqi1QbJIwIEdM",
+        "user": {
+          "id": "6b06f629c118e53fdf2533f5",
+          "name": "QA seat15_8",
+          "email": "seat15_8.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 101
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_9",
+        "email": "seat15_9.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNmOCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.v3tr2OktkZEeXZsSlLZG_Dxk-EcYvIsGHiRDR_F7OlA",
+        "user": {
+          "id": "6b06f629c118e53fdf2533f8",
+          "name": "QA seat15_9",
+          "email": "seat15_9.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 97
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_10",
+        "email": "seat15_10.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNmYiIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.lNHrTLamax-WoiJSSW9oZu5brOG8I7qDyxCEGwnNCRE",
+        "user": {
+          "id": "6b06f629c118e53fdf2533fb",
+          "name": "QA seat15_10",
+          "email": "seat15_10.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 113
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_11",
+        "email": "seat15_11.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzNmZSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.mRjSSTtNqgPExO04qKzzf_SmzmsdGmFiDqTanOmmImE",
+        "user": {
+          "id": "6b06f629c118e53fdf2533fe",
+          "name": "QA seat15_11",
+          "email": "seat15_11.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 98
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_12",
+        "email": "seat15_12.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzQwMSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.B_s_a_t4bFQvvg-qpdyLz4tl2vSwazRRM23PCosuz1E",
+        "user": {
+          "id": "6b06f629c118e53fdf253401",
+          "name": "QA seat15_12",
+          "email": "seat15_12.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 91
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_13",
+        "email": "seat15_13.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzQwNCIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ1LCJleHAiOjE3OTYyMjMxNDV9.jjbnXLTkJe0XRU4J_ZiAHhrgP0MBTt_m6C_ID0PF7K8",
+        "user": {
+          "id": "6b06f629c118e53fdf253404",
+          "name": "QA seat15_13",
+          "email": "seat15_13.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 88
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_14",
+        "email": "seat15_14.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI5YzExOGU1M2ZkZjI1MzQwNyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ2LCJleHAiOjE3OTYyMjMxNDZ9.NeGjMpyPIxOPbaQZA2Wk4pgBSH37LWbv51zQMF4DaoI",
+        "user": {
+          "id": "6b06f629c118e53fdf253407",
+          "name": "QA seat15_14",
+          "email": "seat15_14.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 91
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA seat15_15",
+        "email": "seat15_15.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjJhYzExOGU1M2ZkZjI1MzQwYSIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNzk1NjE4MzQ2LCJleHAiOjE3OTYyMjMxNDZ9.Oxf1VB0RcjkWQ0AuJUASrD2DYlrAMgyke0UOES_g_LM",
+        "user": {
+          "id": "6b06f62ac118e53fdf25340a",
+          "name": "QA seat15_15",
+          "email": "seat15_15.mww8srpp@qa.tutorhub.test",
+          "role": "student",
+          "grade": null
+        }
+      }
+    },
+    "ms": 82
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf25340f",
+        "status": "pending"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253414",
+        "status": "pending"
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253419",
+        "status": "pending"
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf25341e",
+        "status": "pending"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253423",
+        "status": "pending"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253428",
+        "status": "pending"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf25342d",
+        "status": "pending"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253432",
+        "status": "pending"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253437",
+        "status": "pending"
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf25343c",
+        "status": "pending"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253441",
+        "status": "pending"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253446",
+        "status": "pending"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf25344b",
+        "status": "pending"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253450",
+        "status": "pending"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf253455",
+        "status": "pending"
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enroll",
+      "auth": "Bearer <jwt>",
+      "body": {}
+    },
+    "response": {
+      "status": 201,
+      "body": {
+        "id": "6b06f62ac118e53fdf25345a",
+        "status": "pending"
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf25340f",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf25340f",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533dd",
+          "name": "QA seat15_0",
+          "email": "seat15_0.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.258Z",
+        "requestedAt": "2026-11-25T14:52:26.109Z",
+        "createdAt": "2026-11-25T14:52:26.109Z",
+        "updatedAt": "2026-11-25T14:52:26.258Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253414",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253414",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533e0",
+          "name": "QA seat15_1",
+          "email": "seat15_1.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.270Z",
+        "requestedAt": "2026-11-25T14:52:26.116Z",
+        "createdAt": "2026-11-25T14:52:26.116Z",
+        "updatedAt": "2026-11-25T14:52:26.270Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253419",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253419",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533e3",
+          "name": "QA seat15_2",
+          "email": "seat15_2.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.279Z",
+        "requestedAt": "2026-11-25T14:52:26.123Z",
+        "createdAt": "2026-11-25T14:52:26.123Z",
+        "updatedAt": "2026-11-25T14:52:26.279Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf25341e",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf25341e",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533e6",
+          "name": "QA seat15_3",
+          "email": "seat15_3.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.289Z",
+        "requestedAt": "2026-11-25T14:52:26.134Z",
+        "createdAt": "2026-11-25T14:52:26.134Z",
+        "updatedAt": "2026-11-25T14:52:26.290Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253423",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253423",
+        "student": {
+          "_id": "6b06f628c118e53fdf2533e9",
+          "name": "QA seat15_4",
+          "email": "seat15_4.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.299Z",
+        "requestedAt": "2026-11-25T14:52:26.141Z",
+        "createdAt": "2026-11-25T14:52:26.142Z",
+        "updatedAt": "2026-11-25T14:52:26.299Z",
+        "__v": 0
+      }
+    },
+    "ms": 12
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253428",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253428",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533ec",
+          "name": "QA seat15_5",
+          "email": "seat15_5.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.311Z",
+        "requestedAt": "2026-11-25T14:52:26.151Z",
+        "createdAt": "2026-11-25T14:52:26.152Z",
+        "updatedAt": "2026-11-25T14:52:26.312Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf25342d",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf25342d",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533ef",
+          "name": "QA seat15_6",
+          "email": "seat15_6.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.321Z",
+        "requestedAt": "2026-11-25T14:52:26.161Z",
+        "createdAt": "2026-11-25T14:52:26.162Z",
+        "updatedAt": "2026-11-25T14:52:26.321Z",
+        "__v": 0
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253432",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253432",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533f2",
+          "name": "QA seat15_7",
+          "email": "seat15_7.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.329Z",
+        "requestedAt": "2026-11-25T14:52:26.171Z",
+        "createdAt": "2026-11-25T14:52:26.171Z",
+        "updatedAt": "2026-11-25T14:52:26.329Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253437",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253437",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533f5",
+          "name": "QA seat15_8",
+          "email": "seat15_8.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.338Z",
+        "requestedAt": "2026-11-25T14:52:26.179Z",
+        "createdAt": "2026-11-25T14:52:26.179Z",
+        "updatedAt": "2026-11-25T14:52:26.338Z",
+        "__v": 0
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf25343c",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf25343c",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533f8",
+          "name": "QA seat15_9",
+          "email": "seat15_9.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.346Z",
+        "requestedAt": "2026-11-25T14:52:26.188Z",
+        "createdAt": "2026-11-25T14:52:26.189Z",
+        "updatedAt": "2026-11-25T14:52:26.346Z",
+        "__v": 0
+      }
+    },
+    "ms": 11
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253441",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253441",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533fb",
+          "name": "QA seat15_10",
+          "email": "seat15_10.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.355Z",
+        "requestedAt": "2026-11-25T14:52:26.201Z",
+        "createdAt": "2026-11-25T14:52:26.201Z",
+        "updatedAt": "2026-11-25T14:52:26.355Z",
+        "__v": 0
+      }
+    },
+    "ms": 5
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253446",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253446",
+        "student": {
+          "_id": "6b06f629c118e53fdf2533fe",
+          "name": "QA seat15_11",
+          "email": "seat15_11.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.364Z",
+        "requestedAt": "2026-11-25T14:52:26.210Z",
+        "createdAt": "2026-11-25T14:52:26.210Z",
+        "updatedAt": "2026-11-25T14:52:26.364Z",
+        "__v": 0
+      }
+    },
+    "ms": 10
+  },
+  {
+    "case": "EP-19",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf25344b",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf25344b",
+        "student": {
+          "_id": "6b06f629c118e53fdf253401",
+          "name": "QA seat15_12",
+          "email": "seat15_12.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.370Z",
+        "requestedAt": "2026-11-25T14:52:26.220Z",
+        "createdAt": "2026-11-25T14:52:26.220Z",
+        "updatedAt": "2026-11-25T14:52:26.370Z",
+        "__v": 0
+      }
+    },
+    "ms": 6
+  },
+  {
+    "case": "BVA-04",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253450",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253450",
+        "student": {
+          "_id": "6b06f629c118e53fdf253404",
+          "name": "QA seat15_13",
+          "email": "seat15_13.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.377Z",
+        "requestedAt": "2026-11-25T14:52:26.229Z",
+        "createdAt": "2026-11-25T14:52:26.230Z",
+        "updatedAt": "2026-11-25T14:52:26.377Z",
+        "__v": 0
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "BVA-04b",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf253455",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf253455",
+        "student": {
+          "_id": "6b06f629c118e53fdf253407",
+          "name": "QA seat15_14",
+          "email": "seat15_14.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.388Z",
+        "requestedAt": "2026-11-25T14:52:26.241Z",
+        "createdAt": "2026-11-25T14:52:26.241Z",
+        "updatedAt": "2026-11-25T14:52:26.388Z",
+        "__v": 0
+      }
+    },
+    "ms": 8
+  },
+  {
+    "case": "BVA-05",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f628c118e53fdf2533da/enrollments/6b06f62ac118e53fdf25345a",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "_id": "6b06f62ac118e53fdf25345a",
+        "student": {
+          "_id": "6b06f62ac118e53fdf25340a",
+          "name": "QA seat15_15",
+          "email": "seat15_15.mww8srpp@qa.tutorhub.test",
+          "grade": null
+        },
+        "classGroup": "6b06f628c118e53fdf2533da",
+        "status": "approved",
+        "respondedAt": "2026-11-25T14:52:26.399Z",
+        "requestedAt": "2026-11-25T14:52:26.251Z",
+        "createdAt": "2026-11-25T14:52:26.251Z",
+        "updatedAt": "2026-11-25T14:52:26.399Z",
+        "__v": 0
+      }
+    },
+    "ms": 7
+  },
+  {
+    "case": "BVA-05",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/mine",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": "[{\"id\":\"6b06f628c118e53fdf2533da\",\"name\":\"QA fifteen-seat class\",\"grade\":\"\",\"subjects\":[],\"description\":\"\",\"schedule\":\"Sat-Sun, 2:00-6:00 PM\",\"monthlyFee\":3000,\"maxStudents\":15,\"coverImageUrl\":null,\"published\":true,\"teacher\":\"6b06f626c118e53fdf253208\",\"createdAt\":\"2026-11-25T14:52:24.548Z\",\"approvedCount\":16,\"pendingCount\":0},{\"id\":\"6b06f628c118e53fdf2533b3\",\"name\":\"QA two-seat class\",\"grade\":\"\",\"subjects\":[],\"description\":\"\",\"schedule\":\"Sat-Sun, 2:00-6:00 PM\",\"monthlyFee\":3000,\"maxStudents\":2,\"coverImageUrl\":null,\"published\":true,\"teacher\":\"6b06f626c118e53fdf253208\",\"createdAt\":\"2026-11-25T14:52:24.187Z\",\"approvedCount\":3,\"pendingCount\":0},{\"id\":\"6b06f628c118e53fdf2533b0\",\"name\":\"QA negative fee\",\"grade\":\"\",\"subjects\":[],\"description\":\"\",\"schedule\":\"Sat-Sun, 2:00-6:00 PM\",\"monthlyFee\":-500,\"maxStudents\":15,\"coverImageUrl\":null,\"published\":false,\"teacher\":\"6b06f626c118e53fdf253208\",\"createdAt\":\"2026-11-25T14:52:24.181Z\",\"approvedCount\":0,\"pendingCount\":0},{\"id\":\"6b06f628c118e53fdf2533ad\",\"name\":\"QA negative seats\",\"grade\":\"\",\"subjects\":[],\"description\":\"\",\"schedule\":\"Sat-Sun, 2:00-6:00 PM\",\"monthlyFee\":3000,\"maxStudents\":-1,\"coverImageUrl\":null,\"published\":false,\"teacher\":\"6b06f626c118e53fdf253208\",\"createdAt\":\"2026-11-25T14:52:24.174Z\",\"approvedCount\":0,\"pendingCount\":0},{\"id\":\"6b06f628c118e53fdf2533aa\",\"name\":\"QA one seat\",\"grade\":\"\",\"subjects\":[],\"description\":\"\",\"schedule\":\"Sat-Sun, 2:00-6:00 PM\",\"monthlyFee\":3000,\"maxStudents\":1,\"coverImageUrl\":null,\"published\":false,\"te…"
+    },
+    "ms": 68
+  },
+  {
+    "case": "DT-A1",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/mine",
+      "auth": "none",
+      "body": null
+    },
+    "response": {
+      "status": 401,
+      "body": {
+        "message": "Not authorized, no token"
+      }
+    },
+    "ms": 2
+  },
+  {
+    "case": "DT-A2",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/mine",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 401,
+      "body": {
+        "message": "Not authorized, token failed"
+      }
+    },
+    "ms": 1
+  },
+  {
+    "case": "DT-A3",
+    "request": {
+      "method": "POST",
+      "url": "/api/classes",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "hacked class"
+      }
+    },
+    "response": {
+      "status": 403,
+      "body": {
+        "message": "Forbidden: insufficient role"
+      }
+    },
+    "ms": 5
+  },
+  {
+    "case": "DT-A4",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "name": "stolen"
+      }
+    },
+    "response": {
+      "status": 403,
+      "body": {
+        "message": "You do not own this class"
+      }
+    },
+    "ms": 4
+  },
+  {
+    "case": "DT-A5",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/quizzes",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 403,
+      "body": {
+        "message": "You are not enrolled in this class yet"
+      }
+    },
+    "ms": 9
+  },
+  {
+    "case": "DT-A6",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/6b06f626c118e53fdf253211/quizzes",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": [
+        {
+          "_id": "6b06f627c118e53fdf253358",
+          "classGroup": "6b06f626c118e53fdf253211",
+          "title": "Quiz 4q",
+          "subject": "Pure Maths",
+          "order": 1,
+          "dueDate": "2026-12-31T00:00:00.000Z",
+          "durationMinutes": 20,
+          "questions": [
+            {
+              "text": "Q1",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            },
+            {
+              "text": "Q2",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            },
+            {
+              "text": "Q3",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            },
+            {
+              "text": "Q4",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            }
+          ],
+          "published": true,
+          "createdAt": "2026-11-25T14:52:23.858Z",
+          "updatedAt": "2026-11-25T14:52:23.858Z",
+          "__v": 0,
+          "attempted": false
+        },
+        {
+          "_id": "6b06f627c118e53fdf253362",
+          "classGroup": "6b06f626c118e53fdf253211",
+          "title": "Empty quiz",
+          "subject": "Pure Maths",
+          "order": 1,
+          "dueDate": "2026-12-31T00:00:00.000Z",
+          "durationMinutes": 20,
+          "questions": [],
+          "published": true,
+          "createdAt": "2026-11-25T14:52:23.876Z",
+          "updatedAt": "2026-11-25T14:52:23.876Z",
+          "__v": 0,
+          "attempted": false
+        },
+        {
+          "_id": "6b06f627c118e53fdf253367",
+          "classGroup": "6b06f626c118e53fdf253211",
+          "title": "One question quiz",
+          "subject": "Pure Maths",
+          "order": 1,
+          "dueDate": "2026-12-31T00:00:00.000Z",
+          "durationMinutes": 20,
+          "questions": [
+            {
+              "text": "Q1",
+              "options": [
+                "A",
+                "B",
+                "C",
+                "D"
+              ]
+            }
+          ],
+          "published": true,
+          "createdAt": "2026-11-25T14:52:23.883Z",
+          "updatedAt": "2026-11-25T14:52:23.883Z",
+          "__v": 0,
+          "attempted": false
+        }
+      ]
+    },
+    "ms": 10
+  },
+  {
+    "case": "DT-A7",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/login",
+      "auth": "none",
+      "body": {
+        "email": "ep03.mww8srpp@qa.tutorhub.test",
+        "password": "wrongpass"
+      }
+    },
+    "response": {
+      "status": 401,
+      "body": {
+        "message": "Invalid email or password"
+      }
+    },
+    "ms": 95
+  },
+  {
+    "case": "DT-A8",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/login",
+      "auth": "none",
+      "body": {
+        "email": "ep03.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "teacher"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZiMDZmNjI2YzExOGU1M2ZkZjI1MzIwOCIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNzk1NjE4MzQ2LCJleHAiOjE3OTYyMjMxNDZ9.mFowrHPe32gPRsJtfvmZimdFJ_K0JdRIy8ZyebTOQCE",
+        "user": {
+          "id": "6b06f626c118e53fdf253208",
+          "name": "QA ep03",
+          "email": "ep03.mww8srpp@qa.tutorhub.test",
+          "role": "teacher",
+          "grade": null
+        }
+      }
+    },
+    "ms": 92
+  },
+  {
+    "case": "DT-A9",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/login",
+      "auth": "none",
+      "body": {
+        "email": "ep03.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "student"
+      }
+    },
+    "response": {
+      "status": 401,
+      "body": {
+        "message": "This account is not registered as a student"
+      }
+    },
+    "ms": 3
+  },
+  {
+    "case": "DT-A10",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "QA ep03",
+        "email": "ep03.mww8srpp@qa.tutorhub.test",
+        "password": "secret123",
+        "role": "teacher"
+      }
+    },
+    "response": {
+      "status": 409,
+      "body": {
+        "message": "An account with this email already exists"
+      }
+    },
+    "ms": 3
+  },
+  {
+    "case": "DT-A11",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "n",
+        "email": "nr.mww8srpp@qa.tutorhub.test",
+        "password": "secret123"
+      }
+    },
+    "response": {
+      "status": 400,
+      "body": {
+        "message": "name, email, password and role are required"
+      }
+    },
+    "ms": 1
+  },
+  {
+    "case": "DT-A12",
+    "request": {
+      "method": "GET",
+      "url": "/api/auth/me",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "user": {
+          "id": "6b06f626c118e53fdf253208",
+          "name": "QA ep03",
+          "email": "ep03.mww8srpp@qa.tutorhub.test",
+          "role": "teacher",
+          "grade": null
+        }
+      }
+    },
+    "ms": 4
+  },
+  {
+    "case": "EP-01",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "short",
+        "email": "ep01.mww8srpp@qa.tutorhub.test",
+        "password": "pq1",
+        "role": "student"
+      }
+    },
+    "response": {
+      "error": "fetch failed"
+    },
+    "ms": 24
+  },
+  {
+    "case": "BVA-01",
+    "request": {
+      "method": "POST",
+      "url": "/api/auth/register",
+      "auth": "none",
+      "body": {
+        "name": "short",
+        "email": "bva01.mww8srpp@qa.tutorhub.test",
+        "password": "abc12",
+        "role": "student"
+      }
+    },
+    "response": {
+      "error": "fetch failed"
+    },
+    "ms": 46
+  },
+  {
+    "case": "DT-X1",
+    "request": {
+      "method": "GET",
+      "url": "/api/classes/not-an-id",
+      "auth": "Bearer <jwt>",
+      "body": null
+    },
+    "response": {
+      "status": 500,
+      "body": {
+        "message": "Cast to ObjectId failed for value \"not-an-id\" (type string) at path \"_id\" for model \"ClassGroup\"",
+        "stack": "(stack trace present in response)"
+      }
+    },
+    "ms": 18
+  },
+  {
+    "case": "DT-X2",
+    "request": {
+      "method": "PATCH",
+      "url": "/api/classes/6b06f626c118e53fdf253211/enrollments/zzz",
+      "auth": "Bearer <jwt>",
+      "body": {
+        "status": "approved"
+      }
+    },
+    "response": {
+      "error": "fetch failed"
+    },
+    "ms": 28
+  }
+]

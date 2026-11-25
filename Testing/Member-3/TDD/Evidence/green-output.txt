@@ -1,0 +1,9 @@
+
+ RUN  v5.1.2 /tmp/claude-0/-home-claude/4faa004f-1ba2-566d-a85a-09a82d44bb3d/scratchpad/tutorhub-mern/backend
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  18:07:06
+   Duration  153ms (transform 55%, import 28%, tests 9%, worker 7%)
+
