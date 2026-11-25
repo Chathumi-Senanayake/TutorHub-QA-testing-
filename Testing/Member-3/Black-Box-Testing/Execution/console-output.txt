@@ -1,0 +1,225 @@
+TutorHub black-box execution  |  API: http://localhost:5000/api  |  run id: mww8srpp  |  2026-11-25T14:52:21.709Z
+
+=== Equivalence Partitioning ===
+PASS  EP-02    User.password length — 6+ chars (valid)
+        expected: 201, account created
+        actual  : HTTP 201
+PASS  EP-03    User.role — teacher (valid)
+        expected: 201, account created as teacher
+        actual  : HTTP 201
+PASS  EP-04    User.role — student (valid)
+        expected: 201, account created as student
+        actual  : HTTP 201
+PASS  EP-05    User.role — anything else (invalid)
+        expected: 400 'role must be teacher or student'
+        actual  : HTTP 400 "role must be teacher or student"
+
+=== Decision Table — Enrollment ===
+PASS  DT-E1    Unpublished class, no enrollment, student requests seat
+        expected: 404 'This class is not open for enrollment'
+        actual  : HTTP 404 "This class is not open for enrollment"
+PASS  DT-E2    Published class, no enrollment, student requests seat
+        expected: 201, new enrollment status=pending
+        actual  : HTTP 201
+PASS  DT-E3    Pending enrollment, student requests again
+        expected: 409 'Your request is already pending approval'
+        actual  : HTTP 409 "Your request is already pending approval"
+PASS  EP-13    Enrollment.status on respond — anything else (invalid)
+        expected: 400 'status must be approved or rejected'
+        actual  : HTTP 400 "status must be approved or rejected"
+PASS  DT-E8    Teacher sends invalid status (decision rule 8)
+        expected: 400 'status must be approved or rejected'
+        actual  : HTTP 400 "status must be approved or rejected"
+PASS  DT-E9    Enrollment id not found in this class
+        expected: 404 'Enrollment request not found'
+        actual  : HTTP 404 "Enrollment request not found"
+PASS  EP-10    Enrollment.status on respond — approved (valid)
+        expected: 200, enrollment approved
+        actual  : HTTP 200
+PASS  DT-E4    Approved enrollment, student requests again
+        expected: 409 'You are already enrolled in this class'
+        actual  : HTTP 409 "You are already enrolled in this class"
+PASS  EP-11    Enrollment.status on respond — rejected (valid)
+        expected: 200, enrollment rejected
+        actual  : HTTP 200
+PASS  DT-E5    Rejected enrollment, student requests again
+        expected: 201, SAME record reused and reset to pending
+        actual  : HTTP 201
+PASS  DT-E6    Teacher approves a pending request (rule 6)
+        expected: 200, status -> approved
+        actual  : HTTP 200
+PASS  DT-E7    Teacher rejects a pending request (rule 7)
+        expected: 200, status -> rejected
+        actual  : HTTP 200
+
+=== Equivalence Partitioning / BVA — Attendance ===
+PASS  EP-06    Attendance.status — present (valid)
+        expected: 200, record upserted
+        actual  : HTTP 200
+PASS  EP-07    Attendance.status — late (valid)
+        expected: 200, counted as present AND late in summary
+        actual  : HTTP 200
+PASS  EP-08    Attendance.status — absent (valid)
+        expected: 200, record upserted
+        actual  : HTTP 200
+PASS  EP-09    Attendance.status — anything else (invalid)
+        expected: 400 'status must be present, late or absent'
+        actual  : HTTP 400 "status must be present, late or absent"
+PASS  EP-07b   Summary for sA = 1 present + 1 late + 1 absent
+        expected: present=1, late=1, absent=1, pct=67
+        actual  : HTTP 200
+PASS  BVA-09   Attendance % — exact, no rounding
+        expected: pct = 80
+        actual  : HTTP 200
+PASS  BVA-10   Attendance % — rounds up
+        expected: pct = 67 (Math.round 66.66)
+        actual  : HTTP 200
+PASS  BVA-11   Attendance % — zero records (edge)
+        expected: pct = 0, not NaN/Infinity
+        actual  : HTTP 200
+
+=== Equivalence Partitioning — Payments ===
+PASS  EP-14    Payment.status — paid (valid)
+        expected: 200, paidAt stamped
+        actual  : HTTP 200
+PASS  EP-15    Payment.status — due (valid)
+        expected: 200, paidAt cleared
+        actual  : HTTP 200
+PASS  EP-16    Payment.status — anything else (invalid)
+        expected: 400 'status must be paid, due or overdue'
+        actual  : HTTP 400 "status must be paid, due or overdue"
+PASS  DT-P1    Generate monthly fees twice — no duplicates
+        expected: createdCount = 0
+        actual  : HTTP 201
+
+=== Decision Table — Quiz attempt / BVA — question count ===
+PASS  DT-Q1    Quiz not published
+        expected: 404 'Quiz not found or not published'
+        actual  : HTTP 404 "Quiz not found or not published"
+PASS  DT-Q3    Valid first attempt is graded
+        expected: 201, score 100
+        actual  : HTTP 201
+PASS  DT-Q2    Quiz already attempted
+        expected: 409 'You have already attempted this quiz'
+        actual  : HTTP 409 "You have already attempted this quiz"
+PASS  DT-Q4    Student not approved in class (pending)
+        expected: 403 'You are not enrolled in this class yet'
+        actual  : HTTP 403 "You are not enrolled in this class yet"
+PASS  BVA-07   Quiz with 0 questions (edge)
+        expected: score = 0, never NaN or a crash
+        actual  : HTTP 201
+PASS  BVA-08a  Quiz with 1 question — correct answer
+        expected: score = 100
+        actual  : HTTP 201
+PASS  BVA-08b  Quiz with 1 question — wrong answer
+        expected: score = 0
+        actual  : HTTP 201
+PASS  EP-18    answers[] shorter than questions[] (tolerated)
+        expected: score = 50, unanswered count as wrong, no crash
+        actual  : HTTP 201
+
+=== Boundary Value Analysis ===
+PASS  BVA-02   Password = 6 chars (AT the minimum)
+        expected: 201 — the boundary itself must pass
+        actual  : HTTP 201
+PASS  BVA-03   Password = 7 chars (above the minimum)
+        expected: 201
+        actual  : HTTP 201
+PASS  BVA-12   Defaults when fee & maxStudents omitted
+        expected: monthlyFee = 3000, maxStudents = 15
+        actual  : HTTP 201
+PASS  BVA-13   [exploratory] maxStudents = 1 (lowest sensible value)
+        expected: 201, saved as 1
+        actual  : HTTP 201
+FAIL  BVA-14   [exploratory] maxStudents = -1 (below valid range)
+        expected: 400 — a negative capacity must be rejected
+        actual  : HTTP 201
+        note    : expected HTTP 400, got 201
+FAIL  BVA-15   [exploratory] monthlyFee = -500 (below valid range)
+        expected: 400 — a negative fee must be rejected
+        actual  : HTTP 201
+        note    : expected HTTP 400, got 201
+PASS  EP-17    Seats: approvedCount < maxStudents (valid)
+        expected: 200 approved
+        actual  : HTTP 200
+FAIL  EP-19    Seats: approvedCount >= maxStudents (invalid)  [Issue-1]
+        expected: 409 'class is already full'
+        actual  : HTTP 200
+        note    : expected HTTP 409, got 200
+PASS  BVA-04   Seat boundary: 14th approved (one below max)
+        expected: 200 approved
+        actual  : HTTP 200
+PASS  BVA-04b  Seat boundary: 15th approved (the LAST valid seat)
+        expected: 200 approved — last valid seat
+        actual  : HTTP 200
+FAIL  BVA-05   Seat boundary: 16th approved (ABOVE max)  [Issue-1]
+        expected: 409 'class is already full'
+        actual  : HTTP 200
+        note    : expected HTTP 409, got 200
+        (observed: class "QA fifteen-seat class" has 16 approved students against maxStudents=15)
+
+=== Decision Table — Access control & authentication ===
+PASS  DT-A1    No token
+        expected: 401 'no token'
+        actual  : HTTP 401 "Not authorized, no token"
+PASS  DT-A2    Tampered token
+        expected: 401 'token failed'
+        actual  : HTTP 401 "Not authorized, token failed"
+PASS  DT-A3    Student calls a teacher-only endpoint
+        expected: 403 'insufficient role'
+        actual  : HTTP 403 "Forbidden: insufficient role"
+PASS  DT-A4    Teacher edits another teacher's class
+        expected: 403 'You do not own this class'
+        actual  : HTTP 403 "You do not own this class"
+PASS  DT-A5    Student with no approved seat reads class quizzes
+        expected: 403 'not enrolled in this class yet'
+        actual  : HTTP 403 "You are not enrolled in this class yet"
+PASS  DT-A6    Student reads quizzes — answers hidden
+        expected: correctIndex NOT present in the payload
+        actual  : HTTP 200
+PASS  DT-A7    Login — wrong password
+        expected: 401 'Invalid email or password'
+        actual  : HTTP 401 "Invalid email or password"
+PASS  DT-A8    Login — correct credentials
+        expected: 200 + JWT
+        actual  : HTTP 200
+PASS  DT-A9    Login — right credentials, wrong role
+        expected: 401 not registered as a student
+        actual  : HTTP 401 "This account is not registered as a student"
+PASS  DT-A10   Register — duplicate e-mail
+        expected: 409 'account already exists'
+        actual  : HTTP 409 "An account with this email already exists"
+PASS  DT-A11   Register — missing required field
+        expected: 400 'required'
+        actual  : HTTP 400 "name, email, password and role are required"
+PASS  DT-A12   Response never exposes the password hash
+        expected: no "password" field
+        actual  : HTTP 200
+
+=== Invalid-input cases that reach the database layer ===
+    !! server is DOWN after this request — restarting it
+FAIL  EP-01    User.password length — too short (invalid)
+        expected: Rejected with a clean 4xx validation error
+        actual  : NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted
+    !! server is DOWN after this request — restarting it
+FAIL  BVA-01   Password = 5 chars (just BELOW the minimum)
+        expected: Rejected with a clean 4xx validation error
+        actual  : NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted
+FAIL  DT-X1    [exploratory] Malformed class id in URL
+        expected: Clean 4xx (400/404), API stays up
+        actual  : HTTP 500 "Cast to ObjectId failed for value "not-an-id" (type string) at path "_id" for model "ClassGroup""
+        note    : expected HTTP 400/404 , got 500
+    !! server is DOWN after this request — restarting it
+FAIL  DT-X2    [exploratory] Malformed enrollment id
+        expected: Clean 4xx (400/404), API stays up
+        actual  : NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted
+
+==== SUMMARY: 63 cases — 55 passed, 8 failed ====
+  FAIL BVA-14: [exploratory] maxStudents = -1 (below valid range) -> HTTP 201
+  FAIL BVA-15: [exploratory] monthlyFee = -500 (below valid range) -> HTTP 201
+  FAIL EP-19: Seats: approvedCount >= maxStudents (invalid)  [Issue-1] -> HTTP 200
+  FAIL BVA-05: Seat boundary: 16th approved (ABOVE max)  [Issue-1] -> HTTP 200
+  FAIL EP-01: User.password length — too short (invalid) -> NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted
+  FAIL BVA-01: Password = 5 chars (just BELOW the minimum) -> NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted
+  FAIL DT-X1: [exploratory] Malformed class id in URL -> HTTP 500 "Cast to ObjectId failed for value "not-an-id" (type string) at path "_id" for model "ClassGroup""
+  FAIL DT-X2: [exploratory] Malformed enrollment id -> NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted

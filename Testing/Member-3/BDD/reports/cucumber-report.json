@@ -1,0 +1,323 @@
+[
+  {
+    "description": "  As a teacher\n  I want TutorHub to stop me from over-filling a class\n  So that a class never ends up with more students than maxStudents seats",
+    "elements": [
+      {
+        "description": "",
+        "id": "class-seat-capacity-(see-testing/member-4/defects/issue-1-class-capacity-not-enforced);approving-a-student-when-the-class-is-already-full",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "Approving a student when the class is already full",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1340551
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 8,
+            "name": "a class with maxStudents set to 15",
+            "match": {
+              "location": "tests/bdd/step-definitions/class_capacity.steps.js:12"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 110776
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "the class already has 15 approved students",
+            "match": {
+              "location": "tests/bdd/step-definitions/class_capacity.steps.js:17"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 683583293
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "the teacher approves one more pending enrollment request",
+            "match": {
+              "location": "tests/bdd/step-definitions/class_capacity.steps.js:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 335855
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "today the request is still approved, because no capacity check exists yet",
+            "match": {
+              "location": "tests/bdd/step-definitions/class_capacity.steps.js:37"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@knownissue",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "class-seat-capacity-(see-testing/member-4/defects/issue-1-class-capacity-not-enforced)",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Class seat capacity (see Testing/Member-4/Defects/Issue-1-Class-Capacity-Not-Enforced)",
+    "tags": [
+      {
+        "name": "@knownissue",
+        "line": 1
+      }
+    ],
+    "uri": "tests/bdd/features/class_capacity.feature"
+  },
+  {
+    "description": "  As a student in a TutorHub class\n  I want my quiz attempt graded automatically\n  So that I see my score immediately instead of waiting for the teacher",
+    "elements": [
+      {
+        "description": "",
+        "id": "quiz-auto-grading;answering-every-question-correctly",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Answering every question correctly",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 481152
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "a published quiz \"Algebra Basics\" with 4 questions",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 11349602
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "the student submits answers that match every correct option",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:42"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 170927
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "the recorded score should be 100",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:74"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "quiz-auto-grading;answering-half-the-questions-correctly",
+        "keyword": "Scenario",
+        "line": 13,
+        "name": "Answering half the questions correctly",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 235542
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "a published quiz \"Algebra Basics\" with 4 questions",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2727521
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 14,
+            "name": "the student submits answers that match exactly 2 of the 4 correct options",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:50"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 180193
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 15,
+            "name": "the recorded score should be 50",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:74"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "quiz-auto-grading;submitting-a-second-attempt-at-the-same-quiz",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "Submitting a second attempt at the same quiz",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 321705
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "a published quiz \"Algebra Basics\" with 4 questions",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 148758
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 18,
+            "name": "the student has already attempted \"Algebra Basics\"",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2328516
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 19,
+            "name": "the student submits the quiz again",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:59"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 159119
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 20,
+            "name": "the request should be rejected with status 409",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:78"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "quiz-auto-grading;a-quiz-with-no-questions-never-produces-a-broken-score",
+        "keyword": "Scenario",
+        "line": 22,
+        "name": "A quiz with no questions never produces a broken score",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 201176
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "a published quiz \"Algebra Basics\" with 4 questions",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 423015
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 23,
+            "name": "a published quiz \"Empty Quiz\" with 0 questions",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:16"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 2732630
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 24,
+            "name": "the student submits an empty set of answers",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:67"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 90880
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 25,
+            "name": "the recorded score should be 0",
+            "match": {
+              "location": "tests/bdd/step-definitions/quiz_grading.steps.js:74"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "quiz-auto-grading",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Quiz auto-grading",
+    "tags": [],
+    "uri": "tests/bdd/features/quiz_grading.feature"
+  }
+]

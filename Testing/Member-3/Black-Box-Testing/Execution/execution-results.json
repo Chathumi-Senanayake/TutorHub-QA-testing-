@@ -1,0 +1,646 @@
+{
+  "summary": {
+    "generatedAt": "2026-11-25T14:52:31.528Z",
+    "api": "http://localhost:5000/api",
+    "runId": "mww8srpp",
+    "total": 63,
+    "passed": 55,
+    "failed": 8,
+    "health": {
+      "status": "ok",
+      "time": "2026-11-25T14:52:21.825Z"
+    }
+  },
+  "results": [
+    {
+      "id": "EP-02",
+      "technique": "EP",
+      "title": "User.password length — 6+ chars (valid)",
+      "input": "role=student, password \"secret1\" (7 chars)",
+      "expected": "201, account created",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-03",
+      "technique": "EP",
+      "title": "User.role — teacher (valid)",
+      "input": "role=teacher",
+      "expected": "201, account created as teacher",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-04",
+      "technique": "EP",
+      "title": "User.role — student (valid)",
+      "input": "role=student",
+      "expected": "201, account created as student",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-05",
+      "technique": "EP",
+      "title": "User.role — anything else (invalid)",
+      "input": "role=admin",
+      "expected": "400 'role must be teacher or student'",
+      "actual": "HTTP 400 \"role must be teacher or student\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E1",
+      "technique": "DT",
+      "title": "Unpublished class, no enrollment, student requests seat",
+      "input": "published=No, enrollment=none, action=request",
+      "expected": "404 'This class is not open for enrollment'",
+      "actual": "HTTP 404 \"This class is not open for enrollment\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E2",
+      "technique": "DT",
+      "title": "Published class, no enrollment, student requests seat",
+      "input": "published=Yes, enrollment=none, action=request",
+      "expected": "201, new enrollment status=pending",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E3",
+      "technique": "DT",
+      "title": "Pending enrollment, student requests again",
+      "input": "published=Yes, enrollment=pending, action=request",
+      "expected": "409 'Your request is already pending approval'",
+      "actual": "HTTP 409 \"Your request is already pending approval\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-13",
+      "technique": "EP",
+      "title": "Enrollment.status on respond — anything else (invalid)",
+      "input": "status='maybe' on sP's pending request",
+      "expected": "400 'status must be approved or rejected'",
+      "actual": "HTTP 400 \"status must be approved or rejected\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E8",
+      "technique": "DT",
+      "title": "Teacher sends invalid status (decision rule 8)",
+      "input": "status='maybe'",
+      "expected": "400 'status must be approved or rejected'",
+      "actual": "HTTP 400 \"status must be approved or rejected\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E9",
+      "technique": "DT",
+      "title": "Enrollment id not found in this class",
+      "input": "enrollmentId=000000000000000000000000, status=approved",
+      "expected": "404 'Enrollment request not found'",
+      "actual": "HTTP 404 \"Enrollment request not found\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-10",
+      "technique": "EP",
+      "title": "Enrollment.status on respond — approved (valid)",
+      "input": "teacher approves sA's request",
+      "expected": "200, enrollment approved",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E4",
+      "technique": "DT",
+      "title": "Approved enrollment, student requests again",
+      "input": "published=Yes, enrollment=approved, action=request",
+      "expected": "409 'You are already enrolled in this class'",
+      "actual": "HTTP 409 \"You are already enrolled in this class\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-11",
+      "technique": "EP",
+      "title": "Enrollment.status on respond — rejected (valid)",
+      "input": "teacher rejects sR's request",
+      "expected": "200, enrollment rejected",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E5",
+      "technique": "DT",
+      "title": "Rejected enrollment, student requests again",
+      "input": "published=Yes, enrollment=rejected, action=request",
+      "expected": "201, SAME record reused and reset to pending",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E6",
+      "technique": "DT",
+      "title": "Teacher approves a pending request (rule 6)",
+      "input": "approve sB's request",
+      "expected": "200, status -> approved",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-E7",
+      "technique": "DT",
+      "title": "Teacher rejects a pending request (rule 7)",
+      "input": "reject sX's request",
+      "expected": "200, status -> rejected",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-06",
+      "technique": "EP",
+      "title": "Attendance.status — present (valid)",
+      "input": "status=present",
+      "expected": "200, record upserted",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-07",
+      "technique": "EP",
+      "title": "Attendance.status — late (valid)",
+      "input": "status=late",
+      "expected": "200, counted as present AND late in summary",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-08",
+      "technique": "EP",
+      "title": "Attendance.status — absent (valid)",
+      "input": "status=absent",
+      "expected": "200, record upserted",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-09",
+      "technique": "EP",
+      "title": "Attendance.status — anything else (invalid)",
+      "input": "status='excused'",
+      "expected": "400 'status must be present, late or absent'",
+      "actual": "HTTP 400 \"status must be present, late or absent\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-07b",
+      "technique": "EP",
+      "title": "Summary for sA = 1 present + 1 late + 1 absent",
+      "input": "GET /attendance/me as sA",
+      "expected": "present=1, late=1, absent=1, pct=67",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-09",
+      "technique": "BVA",
+      "title": "Attendance % — exact, no rounding",
+      "input": "sB: 8 present of 10 sessions",
+      "expected": "pct = 80",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-10",
+      "technique": "BVA",
+      "title": "Attendance % — rounds up",
+      "input": "sC: 2 of 3 sessions present/late",
+      "expected": "pct = 67 (Math.round 66.66)",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-11",
+      "technique": "BVA",
+      "title": "Attendance % — zero records (edge)",
+      "input": "sD: approved, no attendance marked",
+      "expected": "pct = 0, not NaN/Infinity",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-14",
+      "technique": "EP",
+      "title": "Payment.status — paid (valid)",
+      "input": "status=paid",
+      "expected": "200, paidAt stamped",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-15",
+      "technique": "EP",
+      "title": "Payment.status — due (valid)",
+      "input": "status=due",
+      "expected": "200, paidAt cleared",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-16",
+      "technique": "EP",
+      "title": "Payment.status — anything else (invalid)",
+      "input": "status='cancelled'",
+      "expected": "400 'status must be paid, due or overdue'",
+      "actual": "HTTP 400 \"status must be paid, due or overdue\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-P1",
+      "technique": "DT",
+      "title": "Generate monthly fees twice — no duplicates",
+      "input": "POST /payments/generate again for the same month",
+      "expected": "createdCount = 0",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-Q1",
+      "technique": "DT",
+      "title": "Quiz not published",
+      "input": "published=No, attempted=No, approved=Yes",
+      "expected": "404 'Quiz not found or not published'",
+      "actual": "HTTP 404 \"Quiz not found or not published\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-Q3",
+      "technique": "DT",
+      "title": "Valid first attempt is graded",
+      "input": "published=Yes, attempted=No, approved=Yes; 4/4 correct",
+      "expected": "201, score 100",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-Q2",
+      "technique": "DT",
+      "title": "Quiz already attempted",
+      "input": "published=Yes, attempted=Yes, approved=Yes",
+      "expected": "409 'You have already attempted this quiz'",
+      "actual": "HTTP 409 \"You have already attempted this quiz\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-Q4",
+      "technique": "DT",
+      "title": "Student not approved in class (pending)",
+      "input": "published=Yes, attempted=No, approved=No (sP is pending)",
+      "expected": "403 'You are not enrolled in this class yet'",
+      "actual": "HTTP 403 \"You are not enrolled in this class yet\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-07",
+      "technique": "BVA",
+      "title": "Quiz with 0 questions (edge)",
+      "input": "Q0 has 0 questions, answers=[]",
+      "expected": "score = 0, never NaN or a crash",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-08a",
+      "technique": "BVA",
+      "title": "Quiz with 1 question — correct answer",
+      "input": "1 question, answer correct",
+      "expected": "score = 100",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-08b",
+      "technique": "BVA",
+      "title": "Quiz with 1 question — wrong answer",
+      "input": "1 question, answer wrong",
+      "expected": "score = 0",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-18",
+      "technique": "EP",
+      "title": "answers[] shorter than questions[] (tolerated)",
+      "input": "2 correct answers for a 4-question quiz",
+      "expected": "score = 50, unanswered count as wrong, no crash",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-02",
+      "technique": "BVA",
+      "title": "Password = 6 chars (AT the minimum)",
+      "input": "\"abc123\"",
+      "expected": "201 — the boundary itself must pass",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-03",
+      "technique": "BVA",
+      "title": "Password = 7 chars (above the minimum)",
+      "input": "\"abc1234\"",
+      "expected": "201",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-12",
+      "technique": "BVA",
+      "title": "Defaults when fee & maxStudents omitted",
+      "input": "POST /classes with only {name}",
+      "expected": "monthlyFee = 3000, maxStudents = 15",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-13",
+      "technique": "BVA",
+      "title": "[exploratory] maxStudents = 1 (lowest sensible value)",
+      "input": "maxStudents=1",
+      "expected": "201, saved as 1",
+      "actual": "HTTP 201",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-14",
+      "technique": "BVA",
+      "title": "[exploratory] maxStudents = -1 (below valid range)",
+      "input": "maxStudents=-1",
+      "expected": "400 — a negative capacity must be rejected",
+      "actual": "HTTP 201",
+      "status": "FAIL",
+      "why": "expected HTTP 400, got 201"
+    },
+    {
+      "id": "BVA-15",
+      "technique": "BVA",
+      "title": "[exploratory] monthlyFee = -500 (below valid range)",
+      "input": "monthlyFee=-500",
+      "expected": "400 — a negative fee must be rejected",
+      "actual": "HTTP 201",
+      "status": "FAIL",
+      "why": "expected HTTP 400, got 201"
+    },
+    {
+      "id": "EP-17",
+      "technique": "EP",
+      "title": "Seats: approvedCount < maxStudents (valid)",
+      "input": "2-seat class, approving the 2nd student",
+      "expected": "200 approved",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-19",
+      "technique": "EP",
+      "title": "Seats: approvedCount >= maxStudents (invalid)  [Issue-1]",
+      "input": "2-seat class already holds 2 approved students; approve a 3rd",
+      "expected": "409 'class is already full'",
+      "actual": "HTTP 200",
+      "status": "FAIL",
+      "why": "expected HTTP 409, got 200"
+    },
+    {
+      "id": "BVA-04",
+      "technique": "BVA",
+      "title": "Seat boundary: 14th approved (one below max)",
+      "input": "13 approved, approve the 14th",
+      "expected": "200 approved",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-04b",
+      "technique": "BVA",
+      "title": "Seat boundary: 15th approved (the LAST valid seat)",
+      "input": "14 approved, approve the 15th",
+      "expected": "200 approved — last valid seat",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "BVA-05",
+      "technique": "BVA",
+      "title": "Seat boundary: 16th approved (ABOVE max)  [Issue-1]",
+      "input": "15 of 15 approved, approve a 16th",
+      "expected": "409 'class is already full'",
+      "actual": "HTTP 200",
+      "status": "FAIL",
+      "why": "expected HTTP 409, got 200"
+    },
+    {
+      "id": "DT-A1",
+      "technique": "DT",
+      "title": "No token",
+      "input": "GET /classes/mine without Authorization",
+      "expected": "401 'no token'",
+      "actual": "HTTP 401 \"Not authorized, no token\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A2",
+      "technique": "DT",
+      "title": "Tampered token",
+      "input": "valid JWT with its last chars altered",
+      "expected": "401 'token failed'",
+      "actual": "HTTP 401 \"Not authorized, token failed\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A3",
+      "technique": "DT",
+      "title": "Student calls a teacher-only endpoint",
+      "input": "student POST /classes",
+      "expected": "403 'insufficient role'",
+      "actual": "HTTP 403 \"Forbidden: insufficient role\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A4",
+      "technique": "DT",
+      "title": "Teacher edits another teacher's class",
+      "input": "teacher 2 PATCH teacher 1's class",
+      "expected": "403 'You do not own this class'",
+      "actual": "HTTP 403 \"You do not own this class\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A5",
+      "technique": "DT",
+      "title": "Student with no approved seat reads class quizzes",
+      "input": "sX (rejected) GET /quizzes",
+      "expected": "403 'not enrolled in this class yet'",
+      "actual": "HTTP 403 \"You are not enrolled in this class yet\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A6",
+      "technique": "DT",
+      "title": "Student reads quizzes — answers hidden",
+      "input": "approved student GET /quizzes",
+      "expected": "correctIndex NOT present in the payload",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A7",
+      "technique": "DT",
+      "title": "Login — wrong password",
+      "input": "correct e-mail, wrong password",
+      "expected": "401 'Invalid email or password'",
+      "actual": "HTTP 401 \"Invalid email or password\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A8",
+      "technique": "DT",
+      "title": "Login — correct credentials",
+      "input": "correct e-mail + password",
+      "expected": "200 + JWT",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A9",
+      "technique": "DT",
+      "title": "Login — right credentials, wrong role",
+      "input": "teacher account, role=student",
+      "expected": "401 not registered as a student",
+      "actual": "HTTP 401 \"This account is not registered as a student\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A10",
+      "technique": "DT",
+      "title": "Register — duplicate e-mail",
+      "input": "register ep03 e-mail again",
+      "expected": "409 'account already exists'",
+      "actual": "HTTP 409 \"An account with this email already exists\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A11",
+      "technique": "DT",
+      "title": "Register — missing required field",
+      "input": "no role",
+      "expected": "400 'required'",
+      "actual": "HTTP 400 \"name, email, password and role are required\"",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "DT-A12",
+      "technique": "DT",
+      "title": "Response never exposes the password hash",
+      "input": "GET /auth/me",
+      "expected": "no \"password\" field",
+      "actual": "HTTP 200",
+      "status": "PASS",
+      "why": ""
+    },
+    {
+      "id": "EP-01",
+      "technique": "EP",
+      "title": "User.password length — too short (invalid)",
+      "input": "role=student, password \"pq1\" (3 chars)",
+      "expected": "Rejected with a clean 4xx validation error",
+      "actual": "NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted",
+      "status": "FAIL",
+      "why": ""
+    },
+    {
+      "id": "BVA-01",
+      "technique": "BVA",
+      "title": "Password = 5 chars (just BELOW the minimum)",
+      "input": "\"abc12\"",
+      "expected": "Rejected with a clean 4xx validation error",
+      "actual": "NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted",
+      "status": "FAIL",
+      "why": ""
+    },
+    {
+      "id": "DT-X1",
+      "technique": "DT",
+      "title": "[exploratory] Malformed class id in URL",
+      "input": "GET /classes/not-an-id",
+      "expected": "Clean 4xx (400/404), API stays up",
+      "actual": "HTTP 500 \"Cast to ObjectId failed for value \"not-an-id\" (type string) at path \"_id\" for model \"ClassGroup\"\"",
+      "status": "FAIL",
+      "why": "expected HTTP 400/404 , got 500"
+    },
+    {
+      "id": "DT-X2",
+      "technique": "DT",
+      "title": "[exploratory] Malformed enrollment id",
+      "input": "PATCH /enrollments/zzz",
+      "expected": "Clean 4xx (400/404), API stays up",
+      "actual": "NO RESPONSE — fetch failed — then the API process had CRASHED and had to be restarted",
+      "status": "FAIL",
+      "why": ""
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+BB-UI-01_login_page.png — Login page (student/teacher toggle, e-mail, password)
+BB-UI-02_login_wrong_password_error.png — DT-A7: wrong password -> "Invalid email or password"
+BB-UI-03_login_wrong_role_error.png — DT-A9: student credentials on teacher tab -> "not registered as a teacher"
+BB-UI-04a_register_6char_password_form.png — BVA-02: registration form with a 6-character password (the minimum)
+BB-UI-04b_register_6char_password_success.png — BVA-02: account accepted -> student dashboard
+BB-UI-05a_teacher_dashboard.png — Teacher "My classes" after login (seeded data)
+BB-UI-05b_create_class_form_max1.png — Create-class form filled, maxStudents = 1 (lowest sensible boundary)
+BB-UI-05c_class_created.png — New class "QA Capacity Demo" appears in the teacher list
+BB-UI-06a_two_pending_requests_for_1_seat_class.png — Issue-1: two pending requests against a class with maxStudents = 1
+BB-UI-06b_issue1_both_approved_beyond_capacity.png — Issue-1 DEFECT: both students approved although the class allows 1 seat — no "class is full" refusal
+BB-UI-06c_observation_stale_enrolled_counter.png — OBSERVATION: right after two approvals the "Enrolled students" tile still shows the old value (header stats only load once)
+BB-UI-06d_issue1_enrolled_2_on_1_seat_class.png — Issue-1 DEFECT: after reload "Enrolled students" = 2 on a class created with maxStudents = 1
+BB-UI-06e_issue1_class_list_2_students.png — Issue-1 DEFECT: class list shows "2 students" for the 1-seat class
+BB-UI-07_attendance_marked_late.png — EP-07: attendance status "late" accepted for the first student
+BB-UI-08_teacher_blocked_from_student_panel.png — DT-A3 (UI): teacher opening /dashboard is redirected away from the student panel
+BB-UI-09a_student_my_classes.png — Student "My classes": approved (A), pending (B), rejected states
+BB-UI-09b_student_browse_classes.png — DT-E2/E3/E5: browse list — pending, approved, "ask again" states
+BB-UI-10_student_class_dashboard_progress_chart.png — Student class dashboard: attendance ring, quizzes, payments, progress chart
+BB-UI-11_student_blocked_from_teacher_panel.png — DT-A3 (UI): student opening /admin is redirected away from the teacher panel
+BB-UI-12_pending_student_cannot_open_class.png — DT-A5/DT-Q4 (UI): pending student gets "You are not enrolled in this class yet"
+BB-UI-13_malformed_class_id_raw_error.png — DT-X1: /dashboard/classes/not-an-id -> raw Mongoose "Cast to ObjectId failed" text shown to the user (HTTP 500)
