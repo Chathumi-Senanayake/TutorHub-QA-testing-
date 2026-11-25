@@ -1,0 +1,52 @@
+name: TutorHub tests (QA module CI/CD, Lesson 6)
+
+# Runs on every push/PR so a broken test is caught before it reaches main -
+# this is the Shift-Left idea from Lesson 10 (Best Practices): test earlier,
+# not just before a demo. These are the SAME commands used to build the
+# Testing/ folder locally (Testing/Member-3/White-Box-Testing,
+# Testing/Member-3/BDD) - the whole point of CI is that it runs them for you.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit + security tests with coverage (Vitest)
+        run: npx vitest run --coverage
+
+      - name: Run BDD scenarios (Cucumber)
+        run: npx cucumber-js
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vitest-coverage
+          path: backend/tests/coverage
+
+      - name: Upload Cucumber report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cucumber-report
+          path: backend/tests/bdd/reports
