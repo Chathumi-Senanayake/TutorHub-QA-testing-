@@ -1,0 +1,29 @@
+Test-Cases/TC09a_create_class_form_filled.png — TC-09: create-class form (fee 3000 and max students 15 are the pre-filled defaults)
+Test-Cases/TC09b_class_created_in_list.png — TC-09: new class appears in the teacher list (Published)
+TC-09 API check: monthlyFee=3000, maxStudents=15
+Test-Cases/TC13a_quiz_create_form.png — TC-13: quiz form filled (correct answer = option 2)
+Test-Cases/TC13b_quiz_created_in_list.png — TC-13: quiz created and listed (Published, 0 attempts)
+Test-Cases/TC13c_quiz_deleted.png — TC-13: quiz removed after Delete. (No edit screen exists in the UI — update only works via API)
+Test-Cases/TC21a_student_register_form.png — TC-21 step 1: student registration form
+Test-Cases/TC21b_new_student_empty_dashboard.png — TC-21 step 1: new student lands on an empty "My classes"
+Test-Cases/TC21c_browse_published_classes.png — TC-21 step 2: browse published classes
+Test-Cases/TC21d_request_pending.png — TC-21 step 3: seat requested -> "Request pending"
+Test-Cases/TC21e_teacher_sees_request.png — TC-21 step 4: teacher Requests tab shows the pending student (with count badge on the tab)
+Test-Cases/TC21f_teacher_approved.png — TC-21 step 4: approved (appears under Past decisions)
+Test-Cases/TC21g_student_class_open_no_attempt_button.png — TC-21 step 5: approved student opens the class. Quizzes show "Open" but THERE IS NO WAY TO ATTEMPT A QUIZ IN THE UI (feature gap)
+TC-21 step 5 done via API (UI has no attempt screen): score=100
+Test-Cases/TC21h_progress_chart_after_attempt.png — TC-21 step 6: after the (API) attempt the quiz shows Done and the progress chart has the new score
+Security/SEC02_no_token_blocked.png — SEC-01: GET /api/classes/mine opened in the browser without a token -> 401 JSON
+Security/SEC03_cross_class_access_blocked.png — SEC-09: student typing the URL of a class they are not enrolled in -> "You are not enrolled in this class yet"
+Usability/USAB01_requests_tab_has_pending_badge.png — Heuristic 1: the Requests tab DOES show a pending-count badge (the earlier written claim that it does not was wrong)
+Usability/USAB02_attendance_can_be_corrected.png — Heuristic 3: a mis-click can be corrected by clicking another status (no confirm dialog, but fixable in one click)
+Usability/USAB03_create_class_form_defaults.png — Heuristic 5: fee and max-students are pre-filled with defaults; inputs carry min attributes
+USAB03 number inputs -> Monthly fee (Rs.): min=0, value=3000 | Max students: min=1, value=15
+MOBILE login: scrollWidth=375, clientWidth=375 -> fits
+Member-2/USAB04_mobile_login.png — Context coverage: login at phone width (375 px)
+MOBILE student dashboard: scrollWidth=375, clientWidth=375 -> fits
+Member-2/USAB05_mobile_student_dashboard.png — Student "My classes" at phone width
+MOBILE student class detail: scrollWidth=375, clientWidth=375 -> fits
+Member-2/USAB06_mobile_student_class_detail.png — Student class dashboard at phone width (chart, tables)
+MOBILE teacher attendance: scrollWidth=661, clientWidth=375 -> HORIZONTAL OVERFLOW
+Member-2/USAB07_mobile_teacher_attendance.png — Teacher attendance tab at phone width
